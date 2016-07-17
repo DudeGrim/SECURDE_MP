@@ -37,7 +37,7 @@
             if ($result->num_rows == 1) {
                 $_SESSION['iduser']=$userID; // Initializing Session
                 $_SESSION['name']=$username; // Initializing Session
-                header("location: ../homepage.html"); // Redirecting To Other Page
+                header("location: homepage.html"); // Redirecting To Other Page
             } else {
                 $error = "Username or Password is invalid";
             }
