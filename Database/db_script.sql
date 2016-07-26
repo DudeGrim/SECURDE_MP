@@ -11,7 +11,7 @@ SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='TRADITIONAL,ALLOW_INVALID_DATES';
 -- -----------------------------------------------------
 -- Schema RusselioShoes
 -- -----------------------------------------------------
-CREATE SCHEMA IF NOT EXISTS `RusselioShoes` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci ;
+CREATE SCHEMA IF NOT EXISTS `RusselioShoes` DEFAULT CHARACTER SET utf8 ;
 USE `RusselioShoes` ;
 
 -- -----------------------------------------------------
@@ -62,8 +62,8 @@ ENGINE = InnoDB;
 CREATE TABLE IF NOT EXISTS `RusselioShoes`.`customer` (
   `idCustomer` INT NOT NULL AUTO_INCREMENT,
   `idAccount` INT NOT NULL,
-  `idBilling` INT NOT NULL,
-  `idShipping` INT NOT NULL,
+  `idBilling` INT NULL DEFAULT 0,
+  `idShipping` INT NULL DEFAULT 0,
   PRIMARY KEY (`idCustomer`))
 ENGINE = InnoDB;
 

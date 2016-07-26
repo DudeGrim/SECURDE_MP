@@ -3,7 +3,7 @@
     include('/PHP/register.php'); // Includes Register Script
     if(isset($_SESSION['iduser']))
     {
-        header("location: homepage.html");
+        //header("location: homepage.html");
     }
 ?>
     <html>
@@ -71,7 +71,7 @@
                                 </p>
                                 <p>
                                     <label for="firstName" class="uname" data-icon="u">First Name</label>
-                                    <input id="firstName" name="firstName" required="required" type="text" placeholder="John" />
+                                    <input id="firstName" name="firstName" required="required" type="text" placeholder="Russel" />
                                 </p>
                                 <p>
                                     <label for="middleInitial" class="uname" data-icon="u">Middle Initial</label>
@@ -89,6 +89,16 @@
                                     <label for="passwordsignup_confirm" class="youpasswd" data-icon="p">Please confirm your password </label>
                                     <input id="passwordsignup_confirm" name="passwordConfirm" required="required" type="password" placeholder="eg. X8df!90EO" />
                                 </p>
+                                <!--
+                                <p>
+                                    <label for="billingAddressHouse" class="uname" data-icon="p">Billing Address</label>
+                                    <input id="passwordsignup_confirm" name="billingAddress" required="required" type="text" placeholder="1234" />
+                                </p>
+                                <p>
+                                    <label for="shippingAddress" class="uname" data-icon="p">Shipping Address</label>
+                                    <input id="passwordsignup_confirm" name="shippingAddress" required="required" type="text" placeholder="1234" />
+                                </p>
+-->
                                 <p class="signin button">
                                     <input type="submit" name="register" value="register" />
                                 </p>

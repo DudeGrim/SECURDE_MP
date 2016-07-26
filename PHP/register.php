@@ -16,11 +16,8 @@
         $email = $_POST["email"];
         $password = $_POST["password"];
         $passwordConfirm = $_POST["passwordConfirm"];
-        echo $username;
-        echo $firstName;
-        echo $middleInitial;
-        echo $lastName;
-        echo $password;
+//        echo $username; // echo $firstName; // 
+        //echo $middleInitial; // echo $lastName; // echo $password;
         
 
         if(isset($username) == TRUE && isset($email) == TRUE && isset($password) == TRUE && isset($passwordConfirm) == TRUE &&
@@ -28,7 +25,7 @@
           
             if(strcmp($password,$passwordConfirm)==0){
                 register($username, $email, $password, $firstName, $middleInitial, $lastName, 1);
-                
+              
                 
             }
             else{
@@ -44,7 +41,7 @@
          
     }
 
-    function register($username, $email, $password, $firstName, $middleInital, $lastName, $accountType){
+    function register($username, $email, $password, $firstName, $middleInitial, $lastName, $accountType){
 
         /*get connection from database*/
         $connect = new DBConnection();
@@ -52,10 +49,10 @@
 
         /*prepared statement*/
         $stmt = $connect->prepare("INSERT INTO `account`(`username`, `emailAddress`, `password`, `firstName`, `middleInitial`, `lastName`, `accountType`) VALUES (?,?,?,?,?,?,?)");
-
+         echo $middleInitial;
 
         $stmt->bind_param("ssssssi", $username, $email, $password, $firstName, $middleInitial, $lastName, $accountType);         
-
+            
          if($stmt->execute() == TRUE) {
 
             $userID = $connect->insert_id;
@@ -65,7 +62,7 @@
             $_SESSION['iduser']=$userID; // Initializing Session
             $_SESSION['username']=$username; // Initializing Session
             
-            header("location: ../HTML/login.html"); // Redirecting To Other Page
+            //header("location: ../HTML/login.html"); // Redirecting To Other Page
         } else {
             echo $connect->error;
         }

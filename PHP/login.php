@@ -8,8 +8,6 @@
 
         $email = $_POST["email"];
         $password = $_POST["password"];
-        echo $email;
-        echo $password;
         if(isset($email) == TRUE && isset($password) == TRUE){
             login($email, $password);
         }
@@ -43,7 +41,7 @@
             }
         }
         else {
-            echo "Username or Password is invalid";
+            echo '<script type="text/javascript">alert("Invalid login.");</script>' ;
         }
         
         $connect->close();
