@@ -36,6 +36,7 @@ CREATE TABLE IF NOT EXISTS `RusselioShoes`.`footwearStock` (
   `idFootwear` INT NOT NULL,
   `size` FLOAT NOT NULL,
   `stock` INT NOT NULL,
+  `active` INT(1) NOT NULL DEFAULT 0,
   PRIMARY KEY (`idFootwearStock`))
 ENGINE = InnoDB;
 
