@@ -16,6 +16,7 @@
         $email = $_POST["email"];
         $password = $_POST["password"];
         $passwordConfirm = $_POST["passwordConfirm"];
+        $options = array('cost' => 12);
 //        echo $username; // echo $firstName; // 
         //echo $middleInitial; // echo $lastName; // echo $password;
         
@@ -24,7 +25,9 @@
           isset($firstName) == TRUE && isset($middleInitial) == TRUE && isset($lastName) == TRUE){
           
             if(strcmp($password,$passwordConfirm)==0){
-                register($username, $email, $password, $firstName, $middleInitial, $lastName, 1);
+                $hashedPassword = password_hash($password, PASSWORD_BCRYPT, $options);
+                
+                register($username, $email, $hashedPassword, $firstName, $middleInitial, $lastName, 1);
               
                 
             }
@@ -49,7 +52,7 @@
 
         /*prepared statement*/
         $stmt = $connect->prepare("INSERT INTO `account`(`username`, `emailAddress`, `password`, `firstName`, `middleInitial`, `lastName`, `accountType`) VALUES (?,?,?,?,?,?,?)");
-         echo $middleInitial;
+        // echo $middleInitial;
 
         $stmt->bind_param("ssssssi", $username, $email, $password, $firstName, $middleInitial, $lastName, $accountType);         
             

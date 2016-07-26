@@ -3,7 +3,7 @@
     include('/PHP/register.php'); // Includes Register Script
     if(isset($_SESSION['iduser']))
     {
-        //header("location: homepage.html");
+        header("location: homepage.html");
     }
 ?>
     <html>

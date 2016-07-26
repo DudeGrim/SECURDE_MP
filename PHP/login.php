@@ -18,26 +18,32 @@
     function login($email, $password){   
         /*Input: username, password
           Output: user object*/
+        
         $connect = new DBConnection();
         $connect = $connect->getInstance();
+        
+        
 
-        $sql = "SELECT * FROM account WHERE emailAddress = '$email' AND password = '$password'";
-        $result = $connect->query($sql);
-
+        $stmt = $connect->prepare( "SELECT * FROM account WHERE emailAddress = ?");
+        $stmt->bind_param('s', $email);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        
         if($result->num_rows > 0)
         {
             while($row = $result->fetch_assoc())
             {               
-                $userID= $row['iduser'];
-                $username = $row['name'];
+                $userID= $row['idAccount'];
+                $username = $row['username'];
+                $hashedPassword = $row['password'];
             }
-        
-            if ($result->num_rows == 1) {
+            
+            if ($result->num_rows == 1 && password_verify($password, $hashedPassword)) {
                 $_SESSION['iduser']=$userID; // Initializing Session
                 $_SESSION['name']=$username; // Initializing Session
                 header("location: homepage.html"); // Redirecting To Other Page
             } else {
-                $error = "Username or Password is invalid";
+               echo '<script type="text/javascript">alert("Invalid login.");</script>' ;
             }
         }
         else {
