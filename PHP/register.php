@@ -23,7 +23,7 @@
 
         if(isset($username) == TRUE && isset($email) == TRUE && isset($password) == TRUE && isset($passwordConfirm) == TRUE &&
           isset($firstName) == TRUE && isset($middleInitial) == TRUE && isset($lastName) == TRUE){
-          
+            
             if(strcmp($password,$passwordConfirm)==0){
                 $hashedPassword = password_hash($password, PASSWORD_BCRYPT, $options);
                 
@@ -49,7 +49,40 @@
         /*get connection from database*/
         $connect = new DBConnection();
         $connect = $connect->getInstance();
+        
+        $stmt = $connect->prepare("SELECT * FROM account WHERE emailAddress = ? OR username = ?");
+        $stmt->bind_param("ss", $email, $username);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        
+        if($result->num_rows > 0){
+            /*prepared statement*/
+            $stmt = $connect->prepare("INSERT INTO `account`(`username`, `emailAddress`, `password`, `firstName`, `middleInitial`, `lastName`, `accountType`) VALUES (?,?,?,?,?,?,?)");
+            // echo $middleInitial;
 
+            $stmt->bind_param("ssssssi", $username, $email, $password, $firstName, $middleInitial, $lastName, $accountType);         
+
+             if($stmt->execute() == TRUE) {
+
+                $userID = $connect->insert_id;
+
+                //echo "New user added successfully";
+                /*return userID*/
+                $_SESSION['idAccount']=$userID; // Initializing Session
+                $_SESSION['username']=$username; // Initializing Session
+
+                //header("location: ../HTML/login.html"); // Redirecting To Other Page
+            } else {
+                echo $connect->error;
+            }
+        }else{
+            echo '<script type="text/javascript">alert("Invalid register parameters.");</script>' ;
+        }
+        
+        
+        
+        
+        
         /*prepared statement*/
         $stmt = $connect->prepare("INSERT INTO `account`(`username`, `emailAddress`, `password`, `firstName`, `middleInitial`, `lastName`, `accountType`) VALUES (?,?,?,?,?,?,?)");
         // echo $middleInitial;
@@ -62,7 +95,7 @@
 
             //echo "New user added successfully";
             /*return userID*/
-            $_SESSION['iduser']=$userID; // Initializing Session
+            $_SESSION['idAccount']=$userID; // Initializing Session
             $_SESSION['username']=$username; // Initializing Session
             
             //header("location: ../HTML/login.html"); // Redirecting To Other Page
