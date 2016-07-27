@@ -11,7 +11,7 @@ SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='TRADITIONAL,ALLOW_INVALID_DATES';
 -- -----------------------------------------------------
 -- Schema RusselioShoes
 -- -----------------------------------------------------
-CREATE SCHEMA IF NOT EXISTS `RusselioShoes` DEFAULT CHARACTER SET utf8 ;
+CREATE SCHEMA IF NOT EXISTS `RusselioShoes` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci ;
 USE `RusselioShoes` ;
 
 -- -----------------------------------------------------
@@ -20,24 +20,13 @@ USE `RusselioShoes` ;
 CREATE TABLE IF NOT EXISTS `RusselioShoes`.`footwear` (
   `idFootwear` INT NOT NULL AUTO_INCREMENT,
   `category` VARCHAR(45) NOT NULL,
-  `sex` VARCHAR(1) NOT NULL,
-  `shortDescription` VARCHAR(140) NULL DEFAULT 'No Description Available',
-  `longDescription` MEDIUMTEXT NULL,
-  `price` DECIMAL NOT NULL,
-  PRIMARY KEY (`idFootwear`))
-ENGINE = InnoDB;
-
-
--- -----------------------------------------------------
--- Table `RusselioShoes`.`footwearStock`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `RusselioShoes`.`footwearStock` (
-  `idFootwearStock` INT NOT NULL AUTO_INCREMENT,
-  `idFootwear` INT NOT NULL,
+  `name` VARCHAR(45) NOT NULL,
+  `description` VARCHAR(140) NOT NULL DEFAULT 'No Description Available',
   `size` FLOAT NOT NULL,
   `stock` INT NOT NULL,
-  `active` INT(1) NOT NULL DEFAULT 0,
-  PRIMARY KEY (`idFootwearStock`))
+  `price` DECIMAL NOT NULL,
+  `active` INT NOT NULL DEFAULT 1,
+  PRIMARY KEY (`idFootwear`))
 ENGINE = InnoDB;
 
 
