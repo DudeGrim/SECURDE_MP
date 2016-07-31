@@ -47,13 +47,16 @@
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
                     <li>
-                        <a href="#">About</a>
+                        <a href="#">Catalog</a>
                     </li>
                     <li>
-                        <a href="#">Services</a>
+                        <a href="#">Shopping Cart</a>
                     </li>
                     <li>
-                        <a href="#">Contact</a>
+                        <a href="#">History</a>
+                    </li>
+                    <li>
+                        <a href="#">Logout</a>
                     </li>
                 </ul>
             </div>
@@ -72,6 +75,7 @@
         <footer>
             <div class="row">
                 <div class="col-lg-12">
+                    <p>SECURDE MP T3 AY 2015-2016</p>
                     <p>Copyright &copy; Russelio's Shoe Shop 2016 - ABC</p>
                 </div>
             </div>

@@ -72,6 +72,7 @@
         <footer>
             <div class="row">
                 <div class="col-lg-12">
+                    <p>SECURDE MP T3 AY 2015-2016</p>
                     <p>Copyright &copy; Russelio's Shoe Shop 2016 - ABC</p>
                 </div>
             </div>
