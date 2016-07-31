@@ -1,15 +1,12 @@
-@extends('customer/customerLayout')
+@extends('master_layout/customer_master')
 
 @section('customCSS')
     <link href="css/shop-homepage.css" rel="stylesheet">
 @endsection
-
 @section('pagecontent')
 <!-- Page Content -->
 <div class="container">
-
   <div class="row">
-
       <div class="col-md-3">
           <p class="lead">Catalog</p>
           <div class="list-group">
@@ -83,14 +80,9 @@
                       </div>
                   </div>
               </div>
-
-
           </div>
-
       </div>
-
   </div>
-
 </div>
 <!-- /.container -->
 

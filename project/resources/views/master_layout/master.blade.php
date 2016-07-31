@@ -6,13 +6,14 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="author" content="">
+    <meta name="description" content="SECURDE MP">
+    <meta name="author" content="ABC">
 
     <title>Russelio's Shoe Shop</title>
 
     <!-- Bootstrap Core CSS-->
     <link href="css/superhero_bootstrap.css" rel="stylesheet">
+    <link href="css/master.css" rel="stylesheet">
     <!--
     <link href="  https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
   -->
@@ -46,17 +47,11 @@
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
-                    <li>
-                        <a href="#">Catalog</a>
-                    </li>
-                    <li>
-                        <a href="#">Shopping Cart</a>
-                    </li>
-                    <li>
-                        <a href="#">History</a>
-                    </li>
-                    <li>
-                        <a href="#">Logout</a>
+
+                    @yield('navbarContents')
+
+                    <li class="nav-item logout">
+                        <a class="nav-link" href="#">Logout</a>
                     </li>
                 </ul>
             </div>

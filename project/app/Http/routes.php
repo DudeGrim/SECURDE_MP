@@ -20,6 +20,9 @@ Route::get('/cart', function () {
 Route::get('/productreview', function () {
     return view('customer/review');
 });
+Route::get('/writereview', function () {
+    return view('customer/writereview');
+});
 Route::get('/transaction', function () {
     return view('customer/transaction');
 });
@@ -28,4 +31,8 @@ Route::get('/viewAllProducts', function () {
 });
 Route::get('/editProduct', function () {
     return view('product_manager/edit_product');
+});
+
+Route::get('/sales', function () {
+    return view('accounting_manager/sales');
 });

@@ -1,9 +1,8 @@
-@extends('customer/customerLayout')
+@extends('master_layout/customer_master')
 
 @section('customCSS')
     <link href="css/cart.css" rel="stylesheet">
 @endsection
-
 @section('pagecontent')
 <!-- Page Content -->
 <div class="container">
