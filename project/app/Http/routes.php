@@ -10,6 +10,7 @@
 | and give it the controller to call when that URI is requested.
 |
 */
+use App\User;
 
 Route::get('/catalog', function () {
     return view('customer/catalog');
@@ -35,4 +36,8 @@ Route::get('/editProduct', function () {
 
 Route::get('/sales', function () {
     return view('accounting_manager/sales');
+});
+
+Route::get('/users', function(){
+  return User::all();
 });
