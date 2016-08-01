@@ -1,14 +1,34 @@
 @extends('product_manager/product_manager_layout')
 
 @section('customCSS')
-    <link href="css/pm.css" rel="stylesheet">
+    <link href="{{ asset('css/pm.css') }}" rel="stylesheet">
+
 @endsection
 
 @section('pagecontent')
+
 <!-- Page Content -->
+
 <div class="container">
-          <h4>Edit Product Information</h4>
-          <h3>Product ID: 1</h3>
+          <h1>Product Information</h1>
+
+          <h3>Product ID: {{ $product->idProduct}} </h3>
+
+          <form class="form-horizontal" role="form">
+            <div class="form-group">
+              <label class="control-label col-md-2" for="category">Category:</label>
+              <div class="col-md-10">
+                  <select class="form-control" id="categorySelect">
+                  <option>Boots</option>
+                  <option>Sandals</option>
+                  <option>Shoes</option>
+                  <option>Slippers</option>
+                </select>
+              </div>
+            </div>
+
+          </form>
+          <!--
                <form class="form-horizontal" role="form">
                 <div class="form-group">
                   <label class="control-label col-md-2" for="category">Category:</label>
@@ -59,11 +79,14 @@
                 <button type="button" class="pull-right btn btn-primary btn-lg" data-toggle="modal" data-target="#confirmUpdateModal">Confirm</button>
 
             </form>
+          -->
         </div>
 
 
+<!-- Modal -->
+<!--
         <div class="container">
-      <!-- Modal -->
+
       <div class="modal fade" id="confirmUpdateModal" role="dialog">
         <div class="modal-dialog modal-lg">
           <div class="modal-content">
@@ -118,6 +141,7 @@
         </div>
       </div>
     </div>
+  -->
 <!-- /.container -->
 
 @endsection

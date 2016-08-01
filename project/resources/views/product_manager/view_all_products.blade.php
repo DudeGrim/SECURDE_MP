@@ -15,27 +15,24 @@
                       <th class="col-md-1">ID</th>
                       <th class="col-md-1">Category</th>
                       <th class="col-md-2">Name</th>
-                      <th class="col-md-2">Description</th>
+                      <th class="col-md-3">Description</th>
                       <th class="col-md-1">Size</th>
                       <th class="col-md-1">Stock</th>
                       <th class="col-md-1">Price</th>
-                      <th class="col-md-1">Active</th>
                       <th class="col-md-2">Options</th>
                     </tr>
                   </thead>
                   <tbody>
+
+                    @foreach ($products as $product)
                     <tr>
-                      <td>1</td>
-                      <td>Boots</td>
-                      <td>Cool Boots for Kids</td>
-                      <td>Boots for kids that is cool at the same time</td>
-                      <td>5</td>
-                      <td>10</td>
-                      <td>800</td>
-                      <td>
-                          <button class="btn btn-lg btn-success">Active
-                          </button>
-                      </td>
+                      <td>{{ $product->idProduct}}</td>
+                      <td>{{ $product->category}}</td>
+                      <td>{{ $product->name}}</td>
+                      <td>{{ $product->description}}</td>
+                      <td>{{ $product->size}}</td>
+                      <td>{{ $product->stock}}</td>
+                      <td>{{ $product->price}}</td>
                       <td>
                           <div class="btn-group">
                               <button type="button" class="btn btn-lg btn-default" data-toggle="modal" data-target="#editModal">
@@ -47,30 +44,7 @@
                           </div>
                       </td>
                     </tr>
-                    <tr>
-                      <td>2</td>
-                      <td>Sandals</td>
-                      <td>Sandals for your spartan</td>
-                      <td>Give that warrior a good pair</td>
-                      <td>10</td>
-                      <td>300</td>
-                      <td>1400</td>
-                      <td>
-                          <button class="btn btn-lg btn-success">Active
-                          </button>
-                      </td>
-                      <td>
-                          <div class="btn-group">
-                              <button type="button" class="btn btn-lg btn-default"
-                                      data-toggle="modal" data-target="#editModal">
-                                 <span class="glyphicon glyphicon-edit"></span>
-                              </button>
-                              <button type="button" class="btn btn-lg btn-danger">
-                                  <span class="glyphicon glyphicon-trash"></span>
-                              </button>
-                          </div>
-                      </td>
-                    </tr>
+                    @endforeach
                   </tbody>
             </table>
           </div>

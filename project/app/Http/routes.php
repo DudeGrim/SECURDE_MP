@@ -12,6 +12,7 @@
 */
 use App\User;
 
+/*Customer*/
 Route::get('/catalog', function () {
     return view('customer/catalog');
 });
@@ -27,17 +28,19 @@ Route::get('/writereview', function () {
 Route::get('/transaction', function () {
     return view('customer/transaction');
 });
+/*Product Manager*/
+/*
 Route::get('/viewAllProducts', function () {
     return view('product_manager/view_all_products');
 });
 Route::get('/editProduct', function () {
     return view('product_manager/edit_product');
 });
+*/
+Route::get('/products', 'ProductController@viewAll');
+Route::get('/products/{product}', 'ProductController@showOne');
 
+/*Accounting Manager*/
 Route::get('/sales', function () {
     return view('accounting_manager/sales');
-});
-
-Route::get('/users', function(){
-  return User::all();
 });

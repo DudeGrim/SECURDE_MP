@@ -12,7 +12,7 @@
     <title>Russelio's Shoe Shop</title>
 
     <!-- Bootstrap Core CSS-->
-    <link href="css/superhero_bootstrap.css" rel="stylesheet">
+    <link href="{{ asset('css/superhero_bootstrap.css') }}" rel="stylesheet">
     <!--
     <link href="  https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
   -->
