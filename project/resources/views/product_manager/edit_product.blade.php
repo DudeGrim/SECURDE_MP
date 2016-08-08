@@ -14,20 +14,24 @@
 
           <h3>Product ID: {{ $product->idProduct}} </h3>
 
-          <form class="form-horizontal" role="form">
-            <div class="form-group">
-              <label class="control-label col-md-2" for="category">Category:</label>
-              <div class="col-md-10">
-                  <select class="form-control" id="categorySelect">
-                  <option>Boots</option>
-                  <option>Sandals</option>
-                  <option>Shoes</option>
-                  <option>Slippers</option>
-                </select>
-              </div>
+          <div class="row">
+            <div class="col-md-6">
+              <form class="form-horizontal" role="form">
+                <div class="form-group">
+                  <label class="control-label col-md-2" for="category">Category:</label>
+                  <div class="col-md-10">
+                      <select class="form-control" id="categorySelect">
+                      <option>Boots</option>
+                      <option>Sandals</option>
+                      <option>Shoes</option>
+                      <option>Slippers</option>
+                    </select>
+                  </div>
+                </div>
+                
+              </form>
             </div>
-
-          </form>
+          </div>
           <!--
                <form class="form-horizontal" role="form">
                 <div class="form-group">

@@ -24,6 +24,12 @@
                   </thead>
                   <tbody>
 
+
+                  <!--TODO: Add checking for products -->  
+                  <tr>
+                    <td colspan="8">No Products to Display!</td>
+                  </tr>
+
                     @foreach ($products as $product)
                     <tr>
                       <td>{{ $product->idProduct}}</td>
@@ -45,6 +51,8 @@
                       </td>
                     </tr>
                     @endforeach
+
+
                   </tbody>
             </table>
           </div>

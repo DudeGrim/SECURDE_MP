@@ -12,6 +12,10 @@
 */
 use App\User;
 
+/*Landing*/
+Route::get('/', function () {
+    return view('customer/catalog');
+});
 /*Customer*/
 Route::get('/catalog', function () {
     return view('customer/catalog');
