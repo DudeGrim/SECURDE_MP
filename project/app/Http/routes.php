@@ -42,8 +42,7 @@ Route::get('/editProduct', function () {
 });
 */
 Route::get('/products', 'ProductController@viewAll');
-Route::get('/products/{product}', 'ProductController@showOne');
-
+Route::get('/products/{product}', array('as' => 'productEdit', 'ProductController@showOne'));
 /*Accounting Manager*/
 Route::get('/sales', function () {
     return view('accounting_manager/sales');

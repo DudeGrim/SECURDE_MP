@@ -15,8 +15,7 @@ class ProductController extends Controller
 
     public function viewAll(){
       //for step 1:  $products = \DB::table('product')->get();
-      $products = Product::all();
-      
+      $products = Product::all();  
       return Response::view('product_manager/view_all_products', compact('products'))
             ->header('X-Frame-Options','DENY');
     }

@@ -27,12 +27,7 @@
                           @yield('reviewAverage')
                       </p>
                   </div>
-                  <div class="buyNow">
-                      <a href="#" class="btn btn-primary btn-md btn-block">
-                         <span class="shoppingCartIcon glyphicon glyphicon-shopping-cart"></span>
-                         Add to Cart
-                      </a>
-                  </div>
+                  @yield('actionButton')
               </div>
 
               <div class="well">
