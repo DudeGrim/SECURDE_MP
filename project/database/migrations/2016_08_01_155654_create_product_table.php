@@ -17,8 +17,6 @@ class CreateProductTable extends Migration
             $table->string('category', 45);
             $table->string('name', 45);
             $table->string('description', 140)->nullable();
-            $table->integer('size')->unsigned();
-            $table->integer('stock')->unsigned();
             $table->decimal('price');
             $table->timestamps();
         });

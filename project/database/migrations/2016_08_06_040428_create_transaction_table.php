@@ -30,6 +30,6 @@ class CreateTransactionTable extends Migration
      */
     public function down()
     {
-        Schema::drop('transaction');
+        Schema::drop('transactions');
     }
 }
