@@ -12,4 +12,9 @@ class Product extends Model
      public function stocks(){
         return $this->hasMany(Product_Stock::class, 'idProduct');
      }
+
+     public function addNewProduct(Product_Stock $stock){
+        return $this->stocks()->save($stock);
+     }
+
 }

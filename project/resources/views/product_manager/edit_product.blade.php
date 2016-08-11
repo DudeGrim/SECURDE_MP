@@ -46,7 +46,7 @@
               <h4 class="col-md-4">Price: &#8369;{{$product->price}}</h4>
             </div>
             <h4>Description: {{$product->description}}</h4>
-            
+
               <table>
                 <thead>
                   <th>Size</th>
@@ -63,44 +63,46 @@
               </table>
         </div>
         <div class=" well col-md-12">
-          <div class="form-group row">
-            <h4 for="example-text-input" class="col-xs-2 col-form-label">Category: </h4>
-            <div class="col-xs-10">
-               <select class="form-control" id="category">
-                 <option value='Boots'>Boots</option>
-                 <option value='Shoes'>Shoes</option>
-                 <option value='Sandals'>Sandals</option>
-                 <option value='Slippers'>Slippers</option>
-               </select>
-             </div>
+          <form method="POST">
+            <div class="form-group row">
+              <h4 for="example-text-input" class="col-xs-2 col-form-label">Category: </h4>
+              <div class="col-xs-10">
+                 <select class="form-control" id="category">
+                   <option value='Boots'>Boots</option>
+                   <option value='Shoes'>Shoes</option>
+                   <option value='Sandals'>Sandals</option>
+                   <option value='Slippers'>Slippers</option>
+                 </select>
+               </div>
+              </div>
+            <div class="form-group row">
+              <h4 for="example-text-input" class="col-xs-2 col-form-label">Name: </h4>
+              <div class="col-xs-10">
+                <input class="form-control" type="text" placeholder="{{$product->name}}" id="example-text-input">
+              </div>
             </div>
-          <div class="form-group row">
-            <h4 for="example-text-input" class="col-xs-2 col-form-label">Name: </h4>
-            <div class="col-xs-10">
-              <input class="form-control" type="text" placeholder="{{$product->name}}" id="example-text-input">
+            <div class="form-group row">
+              <h4 for="example-text-input" class="col-xs-2 col-form-label">Price:</h4>
+              <div class="col-xs-10">
+                <input class="form-control" type="text" placeholder="&#8369;{{$product->price}}" id="example-text-input">
+              </div>
             </div>
-          </div>
-          <div class="form-group row">
-            <h4 for="example-text-input" class="col-xs-2 col-form-label">Price:</h4>
-            <div class="col-xs-10">
-              <input class="form-control" type="text" placeholder="&#8369;{{$product->price}}" id="example-text-input">
+            <div class="form-group row">
+              <h4 for="example-text-input" class="col-xs-12 col-form-label">Description:</h4>
+              <div class="col-xs-12">
+                <textarea id="description" class="form-control" placeholder="{{$product->description}}"
+                  rows="5" id="example-text-input"></textarea>
+                  <h6 class="pull-right" id="count_message"></h6>
+              </div>
             </div>
-          </div>
-          <div class="form-group row">
-            <h4 for="example-text-input" class="col-xs-12 col-form-label">Description:</h4>
-            <div class="col-xs-12">
-              <textarea id="description" class="form-control" placeholder="{{$product->description}}"
-                rows="5" id="example-text-input"></textarea>
-                <h6 class="pull-right" id="count_message"></h6>
-            </div>
-          </div>
 
-          <div class="buyNow">
-              <a href="#" class="btn btn-primary btn-md btn-block">
-                 <span class="shoppingCartIcon glyphicon glyphicon-edit"></span>
-                 Update Product Information
-              </a>
-          </div>
+            <div class="buyNow">
+                <a href="#" class="btn btn-primary btn-md btn-block">
+                   <span class="shoppingCartIcon glyphicon glyphicon-edit"></span>
+                   Update Product Information
+                </a>
+            </div>
+        </form>
         </div>
 </div>
 <!-- /.container -->
