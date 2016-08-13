@@ -86,8 +86,7 @@
                       <td name="price">{{ $product->price}}</td>
                       <td>
                           <div class="btn-group">
-
-                               <a href="/products/{{$product->idProduct}}" class="btn btn-info btn-lg" role="button"><span class="glyphicon glyphicon-edit"></span></a>
+                               <a href="products/{{$product->idProduct}}" class="btn btn-info btn-lg" role="button"><span class="glyphicon glyphicon-edit"></span></a>
                               <button type="button" class="btn btn-lg btn-danger">
                                   <span class="glyphicon glyphicon-trash"></span>
                               </button>

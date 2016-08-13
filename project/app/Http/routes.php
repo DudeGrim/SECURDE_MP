@@ -42,10 +42,11 @@ Route::get('/editProduct', function () {
 });
 */
 //Route::get('/products', 'ProductController@viewAll');
-Route::get('/products/{product}', 'ProductController@showOne');
+Route::get('/products/{product}', 'ProductController@showOne')->name('editProduct');
 Route::post('/productNew','ProductController@addNewProduct')->name('addNewProduct');
 
 Route::get('/products', 'ProductController@viewAll')->name('viewAllProducts');
+
 /*Accounting Manager*/
 Route::get('/sales', function () {
     return view('accounting_manager/sales');
