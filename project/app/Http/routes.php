@@ -41,11 +41,16 @@ Route::get('/editProduct', function () {
     return view('product_manager/edit_product');
 });
 */
-//Route::get('/products', 'ProductController@viewAll');
-Route::get('/products/{product}', 'ProductController@showOne')->name('editProduct');
+Route::group(['prefix' => 'products'], function () {
+    Route::get('', 'ProductController@viewAll')->name('viewAllProducts');
+    Route::get('/{product}', 'ProductController@showOne')->name('viewProduct');
+    Route::patch('/{product}/update', 'ProductController@updateProduct')->name('updateProduct');
+    Route::delete('/{product}/delete', 'ProductController@deleteProduct')->name('deleteProduct');
+
+});
+/*Where forms are submitted*/
 Route::post('/productNew','ProductController@addNewProduct')->name('addNewProduct');
 
-Route::get('/products', 'ProductController@viewAll')->name('viewAllProducts');
 
 /*Accounting Manager*/
 Route::get('/sales', function () {

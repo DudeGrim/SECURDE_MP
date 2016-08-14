@@ -42,11 +42,30 @@ class ProductController extends Controller
 
         $stock->size = $size;
         $stock->stock = $request->$sizeName;
-
         //$product->stocks()->save($stock);
         $product->addNewProduct($stock);
       }
+      return back();
+    }
 
+    /*Update Product Information*/
+    public function updateProduct(Request $request, Product $product){
+      $product->update(['category' => $request->_category,
+                        'name' => $request->_name,
+                        'description' => $request->_description,
+                        'price' => $request->_price]);
+
+      foreach(range(5,11) as $size){
+        $sizeName = "size_".$size;
+        $stock = $product::find($product->idProduct)->stocks()->where('size', $size);
+
+        $stock->update(['stock' => $request->$sizeName]);
+      }
+      return back();
+    }
+    /*Delete Product Information*/
+    public function deleteProduct(Product $product){
+      $product->delete();
       return back();
     }
 }

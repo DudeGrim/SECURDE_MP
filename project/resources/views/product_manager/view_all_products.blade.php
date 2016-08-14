@@ -8,26 +8,29 @@
 <!-- Page Content -->
 <div class="container">
         <div class="well">
+          <h2>Add New Product</h2>
           <form method="POST" action="{{ route('addNewProduct') }}">
             <input type="hidden" name="_token" value="{{ csrf_token() }}">
             <div class="form-group row">
               <h4 for="example-text-input" class="col-xs-1 col-form-label">Category: </h4>
               <div class="col-xs-2">
-                 <select name="_category" class="form-control" id="category">
-                   <option value='Boots'>Boots</option>
-                   <option value='Shoes'>Shoes</option>
-                   <option value='Sandals'>Sandals</option>
-                   <option value='Slippers'>Slippers</option>
+                 <select name="_category" class="form-control" id="category" required>
+                   <option value='' disabled selected="selected">select</option>
+                   <option value='boots'>Boots</option>
+                   <option value='shoes'>Shoes</option>
+                   <option value='sandals'>Sandals</option>
+                   <option value='slippers'>Slippers</option>
                  </select>
                </div>
                <h4 for="example-text-input" class="col-xs-1 col-form-label">Name: </h4>
                <div class="col-xs-5">
-                 <input name="_name" class="form-control" type="text" placeholder="Name of Product" id="example-text-input">
+                 <input name="_name" id="productname" class="form-control" type="text" placeholder="Name of Product" maxlength="45" required>
+                 <span id="namechars">45</span>
                </div>
                <div class="form-group row">
-                 <h4 for="example-text-input" class="col-xs-1 col-form-label">Price:</h4>
+                 <h4 for="example-text-input" class="col-xs-1 col-form-label">Price: </h4>
                  <div class="col-xs-2">
-                   <input name="_price" class="form-control" type="text" placeholder="&#8369;XXX.XX" id="example-text-input">
+                   <input name="_price" class="form-control" type="number" min="0" step="0.01" placeholder="Enter price"  required>
                  </div>
                </div>
               </div>
@@ -36,8 +39,8 @@
               <h4 for="example-text-input" class="col-xs-12 col-form-label">Description:</h4>
               <div class="col-xs-12">
                 <textarea name="_description" id="description" class="form-control" placeholder="Enter short product description"
-                  rows="5" id="example-text-input"></textarea>
-                  <h6 class="pull-right" id="count_message"></h6>
+                  rows="5" maxlength="140" required></textarea>
+                <span id="chars">140</span>
               </div>
             </div>
 
@@ -46,7 +49,8 @@
                 @foreach(range(5,11) as $size)
                     <p for="example-text-input" class="col-xs-2 col-form-label">Size {{$size}}: </p>
                     <div class="col-xs-2">
-                      <input name="size_{{$size}}"class="form-control" type="text" placeholder="Size {{$size}}" id="example-text-input">
+                      <input name="size_{{$size}}" class="form-control" type="number"
+                      min="0" step ="1" value="0" required>
                     </div>
                 @endforeach
             </div>
@@ -81,15 +85,15 @@
                       <td name="category">{{ $product->category}}</td>
                       <td name="name">{{ $product->name}}</td>
                       <td name="description">{{ $product->description}}</td>
-                      <!--<td name="size">{{ $product->size}}</td>
-                      <td name="stock">{{ $product->stock}}</td>-->
                       <td name="price">{{ $product->price}}</td>
                       <td>
-                          <div class="btn-group">
-                               <a href="products/{{$product->idProduct}}" class="btn btn-info btn-lg" role="button"><span class="glyphicon glyphicon-edit"></span></a>
-                              <button type="button" class="btn btn-lg btn-danger">
-                                  <span class="glyphicon glyphicon-trash"></span>
-                              </button>
+                          <div class="col-md-12 btn-group">
+                               <a href="products/{{$product->idProduct}}" class="col-md-6 btn btn-info btn-md" role="button">Edit</a>
+                               <form method="POST" action="products/{{$product->idProduct}}/delete" onsubmit="return confirm('Are you sure, You want to delete this product?');" onsubmit="myFunction()">
+                                 {{ method_field('DELETE') }}
+                                  <input type="hidden" name="_token" value="{{csrf_token() }}">
+                                  <input type="submit" class="col-md-6  btn btn-md btn-danger" value="Delete"></input>
+                               </form>
                           </div>
                       </td>
 
@@ -105,5 +109,28 @@
 @endsection
 
 @section('customScripts')
+<script src="{{asset('js/jquery.js')}}"></script>
+<script>
+    $(document).ready(function() {
+      var text_max = 140;
+      $('#chars').html(text_max + ' characters remaining');
 
+      $('#description').keyup(function() {
+          var text_length = $('#description').val().length;
+          var text_remaining = text_max - text_length;
+
+          $('#chars').html(text_remaining + ' characters remaining');
+      });
+
+      var name_text_max = 45;
+      $('#namechars').html(text_max + ' characters remaining');
+
+      $('#productname').keyup(function() {
+          var text_length = $('#productname').val().length;
+          var text_remaining = name_text_max - text_length;
+
+          $('#namechars').html(text_remaining + ' characters remaining');
+      });
+  });
+</script>
 @endsection

@@ -9,6 +9,8 @@ class Product extends Model
      protected $table = 'products';
      protected $primaryKey = 'idProduct';
 
+     protected $guarded = ['idProduct'];
+
      public function stocks(){
         return $this->hasMany(Product_Stock::class, 'idProduct');
      }
