@@ -1,154 +1,167 @@
 @extends('product_manager/product_manager_layout')
 
 @section('customCSS')
-    <link href="css/pm.css" rel="stylesheet">
+    <link href="{{asset('css/pm.css') }}" rel="stylesheet">
+
+    <script src="{{asset('js/jquery.js')}}"
+    <script src="{{asset('js/jquery.bootstrap-touchspin.js') }}"></script>
+
+        <script>
+        /*
+            $("input[name='stock']").TouchSpin({
+                min: 0,
+                step: 1,
+            });
+*/
+            var text_max = 140;
+            $('#count_message').html(text_max + ' remaining');
+
+            $('#description').keyup(function() {
+              var text_length = $('#text').val().length;
+              var text_remaining = text_max - text_length;
+
+              $('#count_message').html(text_remaining + ' remaining');
+            });
+            var name_text_max = 45;
+            $('#name_count_message').html(name_text_max + ' remaining');
+
+            $('#name').keyup(function() {
+              var text_length = $('#name').val().length;
+              var text_remaining = name_text_max - text_length;
+
+              $('#name_count_message').html(text_remaining + ' remaining');
+            });
+        </script>
+
 @endsection
 
 @section('pagecontent')
 <!-- Page Content -->
 <div class="container">
-          <h4>Edit Product Information</h4>
-          <h3>Product ID: 1</h3>
-               <form class="form-horizontal" role="form">
-                <div class="form-group">
-                  <label class="control-label col-md-2" for="category">Category:</label>
-                  <div class="col-md-10">
-                      <select class="form-control" id="categorySelect">
-                      <option>Boots</option>
-                      <option>Sandals</option>
-                      <option>Shoes</option>
-                      <option>Slippers</option>
-                    </select>
-                  </div>
-                </div>
-                <div class="form-group">
-                  <label class="control-label col-md-2" for="name">Name:</label>
-                    <div class="col-md-10 well">
-                        <input type="text" class="form-control" id="name" placeholder="old Name" maxlength="45">
-                        <h6 class="pull-right" id="name_count_message"></h6>
-                    </div>
-                </div>
-                <div class="form-group">
-                  <label class="control-label col-md-2" for="name">Description:</label>
-                    <div class="col-md-10 well">
-                        <textarea class="form-control" id="description" name="text" placeholder="Type in your message" rows="3" maxlength="140"></textarea>
-                        <h6 class="pull-right" id="count_message"></h6>
-                    </div>
-                </div>
+  <!--
+        <div class="col-md-12">
 
-                <div class="form-group">
-                  <label class="control-label col-md-2" for="size">Size:</label>
-                  <div class="col-md-2">
-                    <input type="text" class="form-control" id="name" placeholder="old Size" disabled>
-                  </div>
-                  <label class="control-label col-md-2" for="size">Active   :</label>
-                  <div class="col-md-2">
-                    <input type="text" class="form-control" id="name" placeholder="old Size" disabled>
-                  </div>
-                </div>
-                <div class="form-group">
-                  <label class="control-label col-md-2" for="size">Stock:</label>
-                  <div class="col-md-2">
-                    <input type="text" class="form-control" name="stock" placeholder="old Stock">
-                  </div>
-                  <label class="control-label col-md-2" for="size">Price:</label>
-                  <div class="col-md-2">
-                      <input id="price" class="form-control" type="text" placeholder="old Price" name="price">
-                  </div>
-                </div>
-                <button type="button" class="pull-right btn btn-primary btn-lg" data-toggle="modal" data-target="#confirmUpdateModal">Confirm</button>
-
-            </form>
-        </div>
-
-
-        <div class="container">
-      <!-- Modal -->
-      <div class="modal fade" id="confirmUpdateModal" role="dialog">
-        <div class="modal-dialog modal-lg">
-          <div class="modal-content">
-            <div class="modal-header">
-              <button type="button" class="close" data-dismiss="modal">&times;</button>
-              <h4 class="modal-title">Confirm Update</h4>
+            <h4>Product ID: {{$product->idProduct}}</h4>
+            <div>
+              <h4 class="col-md-4">Category: {{$product->category}}</h4>
+              <h4 class="col-md-4">Product Name: {{$product->name}} </h4>
+              <h4 class="col-md-4">Price: &#8369;{{$product->price}}</h4>
             </div>
-            <div class="modal-body">
-              <div class="table-responsive">
-                <table class="table table-hover">
-                    <thead>
-                      <tr>
-                        <th class="col-md-2">Field</th>
-                        <th class="col-md-5">Original</th>
-                        <th class="col-md-5">Updated</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr>
-                        <td>Category</td>
-                        <td>Original Category</td>
-                        <td>Edited Category</td>
-                      </tr>
-                      <tr>
-                        <td>Name</td>
-                        <td>Original Name</td>
-                        <td>Edited Name</td>
-                      </tr>
-                      <tr>
-                        <td>Description</td>
-                        <td>Original Description</td>
-                        <td>Edited Description</td>
-                      </tr>
-                      <tr>
-                        <td>Stock</td>
-                        <td>Original Stock</td>
-                        <td>Edited Stock</td>
-                      </tr>
-                      <tr>
-                        <td>Price</td>
-                        <td>Original Price</td>
-                        <td>Edited Price</td>
-                      </tr>
-                    </tbody>
+            <h4>Description: {{$product->description}}</h4>
+
+              <table>
+                <thead>
+                  <th>Size</th>
+                  <th>Stock</th>
+                </thead>
+                <tbody>
+                  @foreach($product->stocks as $stock)
+                  <tr>
+                    <td>{{$stock->size}}</td>
+                    <td>{{$stock->stock}}</td>
+                  </tr>
+                  @endforeach
+                </tbody>
               </table>
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-lg btn-default" data-dismiss="modal">Cancel</button>
-              <button type="button" class="btn btn-lg btn-success" data-dismiss="modal">Submit</button>
-            </div>
-          </div>
         </div>
-      </div>
-    </div>
+      -->
+      <h2>Edit Product Information</h2>
+        </form>
+        <div class="well">
+          <form method="POST" action="{{$product->idProduct}}/update">
+            {{ method_field('PATCH') }}
+            <input type="hidden" name="_token" value="{{ csrf_token() }}">
+            <div class="form-group row">
+              <h4 for="example-text-input" class="col-xs-1 col-form-label">Category: </h4>
+              <div class="col-xs-2">
+                 <select name="_category" class="form-control" id="category">
+                   @if ( $product->category == 'boots')
+                     <option value='boots' selected="selected">Boots</option>
+                     <option value='shoes'>Shoes</option>
+                     <option value='sandals'>Sandals</option>
+                     <option value='slippers'>Slippers</option>
+                   @elseif ($product->category == 'shoes')
+                     <option value='boots'>Boots</option>
+                     <option value='shoes' selected="selected">Shoes</option>
+                     <option value='sandals'>Sandals</option>
+                     <option value='slippers'>Slippers</option>
+                   @elseif ($product->category == 'sandals')
+                     <option value='boots'>Boots</option>
+                     <option value='shoes'>Shoes</option>
+                     <option value='sandals' selected="selected">Sandals</option>
+                     <option value='slippers'>Slippers</option>
+                   @elseif ($product->category == 'slippers')
+                     <option value='boots'>Boots</option>
+                     <option value='shoes'>Shoes</option>
+                     <option value='sandals'>Sandals</option>
+                     <option value='slippers' selected="selected">Slippers</option>
+                   @endif
+                 </select>
+               </div>
+               <h4 for="example-text-input" class="col-xs-1 col-form-label">Name: </h4>
+               <div class="col-xs-5">
+                 <input name="_name" class="form-control" type="text" value="{{ $product->name }}" id="productname" maxlength="45" required>
+                 <span id="namechars"></span>
+               </div>
+               <div class="form-group row">
+                 <h4 for="example-text-input" class="col-xs-1 col-form-label">Price:</h4>
+                 <div class="col-xs-2">
+                   <input name="_price" class="form-control" type="number" min="0" step="0.01" value="{{ $product->price }}"  required>
+                 </div>
+               </div>
+              </div>
+
+            <div class="form-group row">
+              <h4 for="example-text-input" class="col-xs-12 col-form-label">Description:</h4>
+              <div class="col-xs-12">
+                <textarea name="_description" id="description" class="form-control" rows="5" rows="5" maxlength="140" required>{{ $product->description }}</textarea>
+                <span id="chars"></span>
+              </div>
+            </div>
+            <div class="form-group row">
+              <h4 for="example-text-input" class="col-xs-12 col-form-label">Stocks:</h4>
+                @foreach($product->stocks as $stock)
+                    <p for="example-text-input" class="col-xs-2 col-form-label">Size {{$stock->size}}: </p>
+                    <div class="col-xs-2">
+                      <input name="size_{{$stock->size}}"class="form-control" type="number"
+                      min="0" step ="1" value="{{$stock->stock}}" required>
+                    </div>
+                @endforeach
+            </div>
+            <div class="buyNow">
+                <button class="btn btn-block btn-success" type="submit"><span class="shoppingCartIcon glyphicon glyphicon-edit"></span>Update Product Information</button>
+            </div>
+        </form>
+        </div>
+</div>
 <!-- /.container -->
 
 @endsection
 
 @section('customScripts')
-<script src="js/jquery.bootstrap-touchspin.js"></script>
+<script src="{{asset('js/jquery.js')}}"></script>
+<script>
+    $(document).ready(function() {
+      var text_max = 140;
+      $('#chars').html((text_max - $('#productname').val().length)  + ' characters remaining');
 
-    <script>
-        $("input[name='stock']").TouchSpin({
-            min: 0,
-            step: 1,
-        });
-
-        var text_max = 140;
-        $('#count_message').html(text_max + ' remaining');
-
-        $('#description').keyup(function() {
+      $('#description').keyup(function() {
           var text_length = $('#description').val().length;
           var text_remaining = text_max - text_length;
 
-          $('#count_message').html(text_remaining + ' remaining');
-        });
+          $('#chars').html(text_remaining + ' characters remaining');
+      });
 
-        var name_text_max = 45;
-        $('#name_count_message').html(name_text_max + ' remaining');
+      var name_text_max = 45;
 
-        $('#name').keyup(function() {
-          var text_length = $('#name').val().length;
+      $('#namechars').html((name_text_max - $('#productname').val().length) + ' characters remaining');
+
+      $('#productname').keyup(function() {
+          var text_length = $('#productname').val().length;
           var text_remaining = name_text_max - text_length;
 
-          $('#name_count_message').html(text_remaining + ' remaining');
-        });
-    </script>
+          $('#namechars').html(text_remaining + ' characters remaining');
+      });
+  });
+</script>
 @endsection

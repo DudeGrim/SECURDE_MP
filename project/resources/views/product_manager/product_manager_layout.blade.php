@@ -12,7 +12,7 @@
     <title>Russelio's Shoe Shop</title>
 
     <!-- Bootstrap Core CSS-->
-    <link href="css/superhero_bootstrap.css" rel="stylesheet">
+    <link href="{{ asset('css/superhero_bootstrap.css') }}" rel="stylesheet">
     <!--
     <link href="  https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
   -->
@@ -47,13 +47,10 @@
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
                     <li>
-                        <a href="#">About</a>
+                        <a href="{{route('viewAllProducts')}}">Products</a>
                     </li>
                     <li>
-                        <a href="#">Services</a>
-                    </li>
-                    <li>
-                        <a href="#">Contact</a>
+                        <a href="#">Logout</a>
                     </li>
                 </ul>
             </div>

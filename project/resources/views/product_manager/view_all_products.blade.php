@@ -7,132 +7,130 @@
 @section('pagecontent')
 <!-- Page Content -->
 <div class="container">
+        <div class="well">
+          <h2>Add New Product</h2>
+          <form method="POST" action="{{ route('addNewProduct') }}">
+            <input type="hidden" name="_token" value="{{ csrf_token() }}">
+            <div class="form-group row">
+              <h4 for="example-text-input" class="col-xs-1 col-form-label">Category: </h4>
+              <div class="col-xs-2">
+                 <select name="_category" class="form-control" id="category" required>
+                   <option value='' disabled selected="selected">select</option>
+                   <option value='boots'>Boots</option>
+                   <option value='shoes'>Shoes</option>
+                   <option value='sandals'>Sandals</option>
+                   <option value='slippers'>Slippers</option>
+                 </select>
+               </div>
+               <h4 for="example-text-input" class="col-xs-1 col-form-label">Name: </h4>
+               <div class="col-xs-5">
+                 <input name="_name" id="productname" class="form-control" type="text" placeholder="Name of Product" maxlength="45" required>
+                 <span id="namechars">45</span>
+               </div>
+               <div class="form-group row">
+                 <h4 for="example-text-input" class="col-xs-1 col-form-label">Price: </h4>
+                 <div class="col-xs-2">
+                   <input name="_price" class="form-control" type="number" min="0" step="0.01" placeholder="Enter price"  required>
+                 </div>
+               </div>
+              </div>
+
+            <div class="form-group row">
+              <h4 for="example-text-input" class="col-xs-12 col-form-label">Description:</h4>
+              <div class="col-xs-12">
+                <textarea name="_description" id="description" class="form-control" placeholder="Enter short product description"
+                  rows="5" maxlength="140" required></textarea>
+                <span id="chars">140</span>
+              </div>
+            </div>
+
+            <div class="form-group row">
+              <h4 for="example-text-input" class="col-xs-12 col-form-label">Stocks:</h4>
+                @foreach(range(5,11) as $size)
+                    <p for="example-text-input" class="col-xs-2 col-form-label">Size {{$size}}: </p>
+                    <div class="col-xs-2">
+                      <input name="size_{{$size}}" class="form-control" type="number"
+                      min="0" step ="1" value="0" required>
+                    </div>
+                @endforeach
+            </div>
+            <div class="buyNow">
+              <button class="btn btn-block btn-success" type="submit"><span class="shoppingCartIcon glyphicon glyphicon-edit"></span>Add New Product</button>
+            </div>
+        </form>
+        </div>
         <h1>Products</h1>
           <div class="table-responsive">
-              <table class="table table-hover">
+              <table id="productTable" class="table table-hover">
                   <thead>
                     <tr>
                       <th class="col-md-1">ID</th>
                       <th class="col-md-1">Category</th>
-                      <th class="col-md-2">Name</th>
-                      <th class="col-md-2">Description</th>
+                      <th class="col-md-3">Name</th>
+                      <th class="col-md-4">Description</th>
                       <th class="col-md-1">Size</th>
-                      <th class="col-md-1">Stock</th>
-                      <th class="col-md-1">Price</th>
-                      <th class="col-md-1">Active</th>
                       <th class="col-md-2">Options</th>
                     </tr>
                   </thead>
                   <tbody>
+
+                  @if (empty($products))
+                  <tr>
+                    <td colspan="8">No Products to Display!</td>
+                  </tr>
+                  @endif
+                    @foreach ($products as $product)
                     <tr>
-                      <td>1</td>
-                      <td>Boots</td>
-                      <td>Cool Boots for Kids</td>
-                      <td>Boots for kids that is cool at the same time</td>
-                      <td>5</td>
-                      <td>10</td>
-                      <td>800</td>
+                      <td name="idProduct">{{ $product->idProduct}}</td>
+                      <td name="category">{{ $product->category}}</td>
+                      <td name="name">{{ $product->name}}</td>
+                      <td name="description">{{ $product->description}}</td>
+                      <td name="price">{{ $product->price}}</td>
                       <td>
-                          <button class="btn btn-lg btn-success">Active
-                          </button>
-                      </td>
-                      <td>
-                          <div class="btn-group">
-                              <button type="button" class="btn btn-lg btn-default" data-toggle="modal" data-target="#editModal">
-                                 <span class="glyphicon glyphicon-edit"></span>
-                              </button>
-                              <button type="button" class="btn btn-lg btn-danger">
-                                  <span class="glyphicon glyphicon-trash"></span>
-                              </button>
+                          <div class="col-md-12 btn-group">
+                               <a href="products/{{$product->idProduct}}" class="col-md-6 btn btn-info btn-md" role="button">Edit</a>
+                               <form method="POST" action="products/{{$product->idProduct}}/delete" onsubmit="return confirm('Are you sure, You want to delete this product?');" onsubmit="myFunction()">
+                                 {{ method_field('DELETE') }}
+                                  <input type="hidden" name="_token" value="{{csrf_token() }}">
+                                  <input type="submit" class="col-md-6  btn btn-md btn-danger" value="Delete"></input>
+                               </form>
                           </div>
                       </td>
+
                     </tr>
-                    <tr>
-                      <td>2</td>
-                      <td>Sandals</td>
-                      <td>Sandals for your spartan</td>
-                      <td>Give that warrior a good pair</td>
-                      <td>10</td>
-                      <td>300</td>
-                      <td>1400</td>
-                      <td>
-                          <button class="btn btn-lg btn-success">Active
-                          </button>
-                      </td>
-                      <td>
-                          <div class="btn-group">
-                              <button type="button" class="btn btn-lg btn-default"
-                                      data-toggle="modal" data-target="#editModal">
-                                 <span class="glyphicon glyphicon-edit"></span>
-                              </button>
-                              <button type="button" class="btn btn-lg btn-danger">
-                                  <span class="glyphicon glyphicon-trash"></span>
-                              </button>
-                          </div>
-                      </td>
-                    </tr>
+                    @endforeach
                   </tbody>
             </table>
           </div>
       </div>
 
-      <!-- Modal -->
-    <div class="modal fade" id="editModal" role="dialog">
-      <div class="modal-dialog">
-
-        <!-- Modal content-->
-        <div class="modal-content">
-          <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal">&times;</button>
-            <h4 class="modal-title">Edit Product Information</h4>
-            <h3>Product ID: 1</h3>
-          </div>
-          <div class="modal-body">
-             <form class="form-horizontal" role="form">
-              <div class="form-group">
-                <label class="control-label col-md-2" for="category">Category:</label>
-                <div class="col-md-10">
-                    <select class="form-control" id="categorySelect">
-                    <option>Boots</option>
-                    <option>Sandals</option>
-                    <option>Shoes</option>
-                    <option>Slippers</option>
-                  </select>
-                </div>
-              </div>
-              <div class="form-group">
-                <label class="control-label col-md-2" for="name">Name:</label>
-                <div class="col-md-10">
-                  <input type="text" class="form-control" id="name" placeholder="old Name">
-                </div>
-              </div>
-              <div class="form-group">
-                <label class="control-label col-md-2" for="name">Description:</label>
-                <div class="col-md-10">
-                  <textarea class="form-control" rows="3" id="description"></textarea>
-                </div>
-              </div>
-              <div class="form-group">
-                <label class="control-label col-md-2" for="name">Description:</label>
-                <div class="col-md-10">
-                  <textarea class="form-control" rows="5" id="comment"></textarea>
-                </div>
-              </div>
-              <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Submit</button>
-              </div>
-          </form>
-          </div>
-        </div>
-
-      </div>
-    </div>
 
   <!-- /.container -->
-<!-- /.container -->
-
 @endsection
 
 @section('customScripts')
+<script src="{{asset('js/jquery.js')}}"></script>
+<script>
+    $(document).ready(function() {
+      var text_max = 140;
+      $('#chars').html(text_max + ' characters remaining');
 
+      $('#description').keyup(function() {
+          var text_length = $('#description').val().length;
+          var text_remaining = text_max - text_length;
+
+          $('#chars').html(text_remaining + ' characters remaining');
+      });
+
+      var name_text_max = 45;
+      $('#namechars').html(text_max + ' characters remaining');
+
+      $('#productname').keyup(function() {
+          var text_length = $('#productname').val().length;
+          var text_remaining = name_text_max - text_length;
+
+          $('#namechars').html(text_remaining + ' characters remaining');
+      });
+  });
+</script>
 @endsection
