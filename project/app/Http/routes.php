@@ -53,10 +53,11 @@ Route::post('/productNew','ProductController@addNewProduct')->name('addNewProduc
 
 
 /*Accounting Manager*/
-Route::get('/sales', function () {
-    return view('accounting_manager/sales');
-});
+Route::get('/sales', 'TransactionController@viewAll')->name('viewAllTransactions');
 
+/*Route::get('/sales', function () {
+    return view('accounting_manager/sales');
+});*/
 Route::auth();
 
 Route::get('/home', 'HomeController@index');

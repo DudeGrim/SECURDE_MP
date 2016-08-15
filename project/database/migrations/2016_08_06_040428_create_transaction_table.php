@@ -16,10 +16,9 @@ class CreateTransactionTable extends Migration
             $table->increments('idTransaction');
             $table->integer('idCustomer')->unsigned();
             $table->integer('idProduct')->unsigned();
+            $table->integer('quantity')->unsigned();
             $table->decimal('price');
             $table->timestamps();
-
-
         });
     }
 

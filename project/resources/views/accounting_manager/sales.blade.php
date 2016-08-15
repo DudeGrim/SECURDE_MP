@@ -1,11 +1,11 @@
 @extends('master_layout/master')
 
 @section('customCSS')
-  <link href="css/am.css" rel="stylesheet">
+  <link href="{{asset('css/am.css')}}" rel="stylesheet">
 @endsection
 
 @section('customScripts')
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script src="{{asset('js/jquery.js')}}"></script>
 
 <script>
 $(document).ready(function () {
@@ -41,35 +41,33 @@ $(document).ready(function () {
                   <table class="table table-hover">
                       <thead>
                         <tr>
-                          <th class="col-md-3">Date</th>
-                          <th class="col-md-3">Item Name</th>
-                          <th class="col-md-2">Quantity</th>
-                          <th class="col-md-2">Price</th>
-                          <th class="col-md-2">Total</th>
+                          <th class="col-md-2">Date</th>
+                          <th class="col-md-2">Customer Name<th>
+                          <th class="col-md-1">Category<th>
+                          <th class="col-md-3">Product Name<th>
+                          <th class="col-md-1">Quantity</th>
+                          <th class="col-md-1">Price</th>
+                          <th class="col-md-2">Total Sales</th>
                         </tr>
                       </thead>
                       <tbody class="searchable">
+                        @if (empty($transactions))
                         <tr>
-                          <td>July 26, 2016</td>
-                          <td>Cool Boots for kids</td>
-                          <td>2</td>
-                          <td>1000</td>
-                          <td>2000</td>
+                          <td colspan="10">No Transactions to Display!</td>
                         </tr>
-                        <tr>
-                          <td>July 26, 2016</td>
-                          <td>Just another flat shoes</td>
-                          <td>1</td>
-                          <td>800</td>
-                          <td>800</td>
-                        </tr>
-                        <tr>
-                          <td>July 26, 2016</td>
-                          <td>Sneakers for sneaking</td>
-                          <td>1</td>
-                          <td>2000</td>
-                          <td>2000</td>
-                        </tr>
+                        @endif
+                        @foreach ($transactions as $transaction)
+                          <tr>
+                            <td colspan="1">{{ date('F d, Y', strtotime($transaction->created_at)) }}</td>
+                            <td colspan="1">{{$transaction->idCustomer}}</td>
+                            <td colspan="2">{{$transaction->productSold->category}}</td>
+                            <td colspan="3">{{$transaction->productSold->name}}</td>
+                            <td colspan="1">{{$transaction->quantity}}</td>
+                            <td colspan="1">{{$transaction->price}}</td>
+                            <td colspan="1">{{$transaction->price * $transaction->quantity}}</td>
+                          </tr>
+                        @endforeach
+
                       </tbody>
                 </table>
               </div>

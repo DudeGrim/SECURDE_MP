@@ -11,6 +11,9 @@ class Product extends Model
 
      protected $guarded = ['idProduct'];
 
+     public function bought(){
+       return $this->belongsToMany(Transaction::class, 'idProduct', 'idProduct');
+     }
      public function stocks(){
         return $this->hasMany(Product_Stock::class, 'idProduct');
      }
