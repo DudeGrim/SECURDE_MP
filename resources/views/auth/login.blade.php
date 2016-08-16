@@ -1,6 +1,6 @@
-@extends('layouts.app')
+@extends('master_layout/master')
 
-@section('content')
+@section('pagecontent')
 <div class="container">
     <div class="row">
         <div class="col-md-8 col-md-offset-2">

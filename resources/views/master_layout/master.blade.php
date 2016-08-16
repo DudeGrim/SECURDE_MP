@@ -51,7 +51,7 @@
                     @yield('navbarContents')
 
                     <li class="nav-item logout">
-                        <a class="nav-link" href="#">Logout</a>
+                        <a class="nav-link" href="{{ url('/logout')}}">Logout</a>
                     </li>
                 </ul>
             </div>
