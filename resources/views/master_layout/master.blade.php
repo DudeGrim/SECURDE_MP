@@ -51,7 +51,18 @@
                     @yield('navbarContents')
 
                     <li class="nav-item logout">
-                        <a class="nav-link" href="{{ url('/logout')}}">Logout</a>
+                      @if (!Request::is('register') && !Request::is('login'))
+                          <a class="nav-link" href="{{ url('/logout')}}">Logout</a>
+                      @endif
+                      @if (Request::is('register'))
+                          <a class="nav-link" href="{{ url('/login')}}">Login</a>
+                      @endif
+                      @if (Request::is('login'))
+                          <a class="nav-link" href="{{ url('/register')}}">Register</a>
+                      @endif
+
+
+
                     </li>
                 </ul>
             </div>
