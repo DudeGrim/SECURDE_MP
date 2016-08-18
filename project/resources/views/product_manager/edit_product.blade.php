@@ -1,73 +1,11 @@
-@extends('product_manager/product_manager_layout')
-
-@section('customCSS')
-    <link href="{{asset('css/pm.css') }}" rel="stylesheet">
-
-    <script src="{{asset('js/jquery.js')}}"
-    <script src="{{asset('js/jquery.bootstrap-touchspin.js') }}"></script>
-
-        <script>
-        /*
-            $("input[name='stock']").TouchSpin({
-                min: 0,
-                step: 1,
-            });
-*/
-            var text_max = 140;
-            $('#count_message').html(text_max + ' remaining');
-
-            $('#description').keyup(function() {
-              var text_length = $('#text').val().length;
-              var text_remaining = text_max - text_length;
-
-              $('#count_message').html(text_remaining + ' remaining');
-            });
-            var name_text_max = 45;
-            $('#name_count_message').html(name_text_max + ' remaining');
-
-            $('#name').keyup(function() {
-              var text_length = $('#name').val().length;
-              var text_remaining = name_text_max - text_length;
-
-              $('#name_count_message').html(text_remaining + ' remaining');
-            });
-        </script>
-
-@endsection
+@extends('master_layout/product_master')
 
 @section('pagecontent')
 <!-- Page Content -->
 <div class="container">
-  <!--
-        <div class="col-md-12">
-
-            <h4>Product ID: {{$product->idProduct}}</h4>
-            <div>
-              <h4 class="col-md-4">Category: {{$product->category}}</h4>
-              <h4 class="col-md-4">Product Name: {{$product->name}} </h4>
-              <h4 class="col-md-4">Price: &#8369;{{$product->price}}</h4>
-            </div>
-            <h4>Description: {{$product->description}}</h4>
-
-              <table>
-                <thead>
-                  <th>Size</th>
-                  <th>Stock</th>
-                </thead>
-                <tbody>
-                  @foreach($product->stocks as $stock)
-                  <tr>
-                    <td>{{$stock->size}}</td>
-                    <td>{{$stock->stock}}</td>
-                  </tr>
-                  @endforeach
-                </tbody>
-              </table>
-        </div>
-      -->
-      <h2>Edit Product Information</h2>
-        </form>
-        <div class="well">
+    <div class="panel panel-default">
+      <div class="panel-heading">Edit Product Information</div>
+        <div class="panel-body">
           <form method="POST" action="{{$product->idProduct}}/update">
             {{ method_field('PATCH') }}
             <input type="hidden" name="_token" value="{{ csrf_token() }}">
@@ -133,13 +71,36 @@
             </div>
         </form>
         </div>
+      </div>
+      <div class="panel panel-default">
+          <div class="panel-heading">Product Reviews</div>
+          <div class="panel-body">
+
+            @foreach($product->reviews as $review)
+            <div class="panel panel-info">
+                <div class="panel-heading row">
+                  <div class="col-md-6">{{$review->writer->accountDetails->username}}</div>
+                  <div class="col-md-6 text-right">{{ date('F d, Y', strtotime($review->created_at)) }}</div>
+                </div>
+                <div class="panel-body">
+                @for ($i = 0; $i < $review->rating; $i++)
+                  <span class="glyphicon glyphicon-star" style="color:red"></span>
+                @endfor
+                @for ($i = 0; $i < (5 - $review->rating); $i++)
+                  <span class="glyphicon glyphicon-star-empty" style="color:red"></span>
+                @endfor
+                <p>{{$review->review}}</p>
+              </div>
+            </div>
+            @endforeach
+          </div>
+      </div>
 </div>
 <!-- /.container -->
 
 @endsection
 
 @section('customScripts')
-<script src="{{asset('js/jquery.js')}}"></script>
 <script>
     $(document).ready(function() {
       var text_max = 140;

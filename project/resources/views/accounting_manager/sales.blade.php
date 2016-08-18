@@ -1,29 +1,17 @@
 @extends('master_layout/master')
 
-@section('customCSS')
-  <link href="{{asset('css/am.css')}}" rel="stylesheet">
-@endsection
-
 @section('customScripts')
-<script src="{{asset('js/jquery.js')}}"></script>
-
 <script>
 $(document).ready(function () {
-
   (function ($) {
-
       $('#filter').keyup(function () {
-
           var rex = new RegExp($(this).val(), 'i');
           $('.searchable tr').hide();
           $('.searchable tr').filter(function () {
               return rex.test($(this).text());
           }).show();
-
       })
-
   }(jQuery));
-
 });
 </script>
 @endsection
@@ -31,11 +19,11 @@ $(document).ready(function () {
 @section('pagecontent')
 <div class="container">
         <div class="row">
-            <div class="col-md-12">
-              <h2>Sales</h2>
-              <hr>
+            <div class="panel panel-default">
+              <div class="panel-heading">Sales</div>
+              <div class="panel-body">
               <div class="input-group"> <span class="input-group-addon">Filter</span>
-                  <input id="filter" type="text" class="form-control" placeholder="Type here...">
+                  <input id="filter" type="text" class="form-control" placeholder="Category / Product Name">
               </div>
               <div class="table-responsive">
                   <table class="table table-hover">
@@ -73,6 +61,7 @@ $(document).ready(function () {
               </div>
             </div>
           </div>
+          <div>
       </div>
 <!-- /.container -->
 

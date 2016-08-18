@@ -12,11 +12,15 @@
     <title>Russelio's Shoe Shop</title>
 
     <!-- Bootstrap Core CSS-->
+    <link href="{{asset('css/bootstrap.min.css')}}" rel="stylesheet">
     <link href="{{asset('css/superhero_bootstrap.css')}}" rel="stylesheet">
     <link href="{{asset('css/master.css')}}" rel="stylesheet">
-    <!--
-    <link href="  https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
-  -->
+
+    <!-- jQuery -->
+    <script src="{{asset('js/jquery.js')}}"></script>
+    <!-- Bootstrap Core JavaScript  js/bootstrap.min.js-->
+    <script src="{{asset('js/bootstrap.min.js')}}"></script>
+
     <!-- Custom CSS -->
     @yield('customCSS')
     @yield('customScripts')
@@ -26,13 +30,11 @@
         <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
-
 </head>
-
 <body>
 
     <!-- Navigation -->
-    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+    <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
         <div class="container">
             <!-- Brand and toggle get grouped for better mobile display -->
             <div class="navbar-header">
@@ -77,14 +79,6 @@
         </footer>
     </div>
     <!-- /.container -->
-
-    <!-- jQuery
-    <script src="js/jquery.js"></script>
-    -->
-
-    <script src="https://code.jquery.com/jquery-3.1.0.js"   integrity="sha256-slogkvB1K3VOkzAI8QITxV3VzpOnkeNVsKvtkYLMjfk="   crossorigin="anonymous"></script>
-    <!-- Bootstrap Core JavaScript  js/bootstrap.min.js-->
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
 
 </body>

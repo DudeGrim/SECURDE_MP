@@ -18,6 +18,7 @@ class CreateReviewTable extends Migration
             $table->integer('idProduct')->unsigned();
             $table->text('review')->nullable();
             $table->integer('rating')->unsigned();
+            $table->softDeletes();
             $table->timestamps();
         });
     }

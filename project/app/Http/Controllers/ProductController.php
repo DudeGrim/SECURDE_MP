@@ -4,24 +4,26 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Response;
-
+use Illuminate\Database\Eloquent\SoftDeletingTrait;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use App\Http\Requests;
 
 //for step 1: use DB;
 
 use App\Product;
 use App\Product_Stock;
+use App\Review;
 class ProductController extends Controller
 {
-
     public function viewAll(){
-      //for step 1:  $products = \DB::table('product')->get();
       $products = Product::all();
       return Response::view('product_manager/view_all_products', compact('products'))
             ->header('X-Frame-Options','DENY');
+
     }
     public function showOne(Product $product){
-      return view('product_manager/edit_product', compact('product'));
+      $reviews = Review::where('idProduct',  $product->idProduct)->get();
+      return view('product_manager/edit_product', compact('product','reviews'));
     }
 
     public function addNewProduct(Request $request){
@@ -66,6 +68,10 @@ class ProductController extends Controller
     /*Delete Product Information*/
     public function deleteProduct(Product $product){
       $product->delete();
+
+      foreach($product->stocks as $stock){
+        $stock->delete();
+      }
       return back();
     }
 }

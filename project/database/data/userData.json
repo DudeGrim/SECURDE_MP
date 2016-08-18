@@ -1,0 +1,47 @@
+[
+  {
+    "accountType": 1,
+    "username":"aniger429",
+    "password":"soawesome",
+    "emailAddress":"aniger429@gmail.com",
+    "firstName":"Regina Claire",
+    "middleInitial":"M",
+    "lastName":"Balajadia"
+  },
+  {
+    "accountType": 1,
+    "username":"DudeGrim",
+    "password":"bananaLover",
+    "emailAddress":"cardanomarcdaniel96@gmail.com",
+    "firstName":"Marc Daniel",
+    "middleInitial":"T",
+    "lastName":"Cardano"
+  },
+  {
+    "accountType": 1,
+    "username":"MrDayDreamer03",
+    "password":"vanillaLover",
+    "emailAddress":"russel_andrade@dlsu.edu.ph",
+    "firstName":"Russel John",
+    "middleInitial":"C",
+    "lastName":"Andrade"
+  },
+  {
+    "accountType": 1,
+    "username":"rappogi1",
+    "password":"avocadoLover",
+    "emailAddress":"rafael_lozano@dlsu.edu.ph",
+    "firstName":"Rafael",
+    "middleInitial":"R",
+    "lastName":"Lozano"
+  },
+  {
+    "accountType": 1,
+    "username":"MartinLucasRR",
+    "password":"fruitLover",
+    "emailAddress":"john_martin_lucas@dlsu.edu.ph",
+    "firstName":"John Martin",
+    "middleInitial":"G",
+    "lastName":"Lucas"  
+  }
+]

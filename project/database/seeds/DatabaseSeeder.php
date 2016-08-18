@@ -22,5 +22,11 @@ class DatabaseSeeder extends Seeder
       $this->call('customer_table_seeder');
       $this->command->info('Customers table seeded!');
 
+      $this->call('review_table_seeder');
+      $this->command->info('Review table seeded!');
+
+      $this->call('account_table_seeder');
+      $this->command->info('Account table seeded!');
+
     }
 }

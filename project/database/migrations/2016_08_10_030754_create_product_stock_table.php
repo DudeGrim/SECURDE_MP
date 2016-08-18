@@ -15,8 +15,14 @@ class CreateProductStockTable extends Migration
         Schema::create('product_stock', function (Blueprint $table) {
             $table->increments('idProductStock');
             $table->integer('idProduct')->unsigned();
+            /*
+            $table->foreign('idProduct')
+                  ->references('idProduct')->on('products')
+                  ->onDelete('cascade');
+            */
             $table->integer('size')->unsigned();
             $table->integer('stock')->unsigned();
+            $table->softDeletes();
             $table->timestamps();
         });
     }

@@ -12,35 +12,34 @@
 */
 use App\User;
 
-/*Landing*/
-Route::get('/', function () {
-    return view('customer/catalog');
-});
+Route::get('', 'CustomerController@showCatalog')->name('showCatalog');
+
 /*Customer*/
-Route::get('/catalog', function () {
-    return view('customer/catalog');
-});
-Route::get('/cart', function () {
-    return view('customer/cart');
-});
-Route::get('/productreview', function () {
-    return view('customer/review');
-});
-Route::get('/writereview', function () {
-    return view('customer/writereview');
-});
-Route::get('/transaction', function () {
-    return view('customer/transaction');
+Route::group(['prefix' => 'customer'], function(){
+/*
+  Route::get('/catalog', function () {
+      return view('customer/catalog');
+  });
+*/
+  Route::get('/cart', function () {
+      return view('customer/cart');
+  });
+  Route::get('/reviews', 'CustomerController@reviews')->name('showReviews');
+  Route::get('/reviews', 'CustomerController@reviews')->name('showReviews');
+  Route::get('/writereview/{product}', 'CustomerController@writeReview')->name('writeReviews');
+  /*
+  Route::get('/reviews', function () {
+      return view('customer/review');
+  });
+  Route::get('/writereview', function () {
+      return view('customer/writereview');
+  });
+  Route::get('/transaction', function () {
+      return view('customer/transaction');
+  });
+  */
 });
 /*Product Manager*/
-/*
-Route::get('/viewAllProducts', function () {
-    return view('product_manager/view_all_products');
-});
-Route::get('/editProduct', function () {
-    return view('product_manager/edit_product');
-});
-*/
 Route::group(['prefix' => 'products'], function () {
     Route::get('', 'ProductController@viewAll')->name('viewAllProducts');
     Route::get('/{product}', 'ProductController@showOne')->name('viewProduct');

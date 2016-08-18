@@ -13,10 +13,14 @@ class Customer extends Model
   public function accountDetails(){
     return $this->hasOne(Account::class, 'idAccount', 'idAccount');
   }
-
-
+  
   public function transactions(){
      return $this->hasMany(Transaction::class, 'idCustomer', 'idCustomer');
   }
+
+  public function reviews(){
+     return $this->hasMany(Review::class, 'idCustomer', 'idCustomer');
+  }
+
 
 }

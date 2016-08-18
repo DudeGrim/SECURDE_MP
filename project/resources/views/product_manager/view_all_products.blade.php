@@ -1,14 +1,11 @@
-@extends('product_manager/product_manager_layout')
-
-@section('customCSS')
-    <link href="css/pm.css" rel="stylesheet">
-@endsection
+@extends('master_layout/product_master')
 
 @section('pagecontent')
 <!-- Page Content -->
 <div class="container">
-        <div class="well">
-          <h2>Add New Product</h2>
+        <div class="panel panel-default">
+          <div class="panel-heading">Add New Product</div>
+          <div class="panel-body">
           <form method="POST" action="{{ route('addNewProduct') }}">
             <input type="hidden" name="_token" value="{{ csrf_token() }}">
             <div class="form-group row">
@@ -58,9 +55,11 @@
               <button class="btn btn-block btn-success" type="submit"><span class="shoppingCartIcon glyphicon glyphicon-edit"></span>Add New Product</button>
             </div>
         </form>
-        </div>
-        <h1>Products</h1>
-          <div class="table-responsive">
+      </div>
+    </div>
+    <div class="panel panel-default">
+        <div class="panel-heading">Products</div>
+          <div class="panel-body table-responsive">
               <table id="productTable" class="table table-hover">
                   <thead>
                     <tr>
@@ -109,7 +108,7 @@
 @endsection
 
 @section('customScripts')
-<script src="{{asset('js/jquery.js')}}"></script>
+<!-- <script src="{{asset('js/jquery.js')}}"></script> -->
 <script>
     $(document).ready(function() {
       var text_max = 140;
