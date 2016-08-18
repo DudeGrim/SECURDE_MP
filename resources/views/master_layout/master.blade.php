@@ -58,7 +58,7 @@
 
                       @if (!Request::is('register') && !Request::is('login'))
 
-                          <a class="nav-link navbar-right" href="{{ url('/logout')}}">Logout</a>
+                          <a class="nav-link" href="{{ url('/logout')}}">Logout</a>
 
                       @endif
                       @if (Request::is('register'))
