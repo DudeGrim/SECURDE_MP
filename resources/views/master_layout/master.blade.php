@@ -49,10 +49,17 @@
                 <ul class="nav navbar-nav">
 
                     @yield('navbarContents')
+                    @if(!Request::is('register') && !Request::is('login'))
+                    <li class="navbar-right">
+                      <a class="nav-link">{{Auth::user()->username}}</a>
+                    </li>
+                    <li class="nav-item logout navbar-right">
+                    @endif
 
-                    <li class="nav-item logout">
                       @if (!Request::is('register') && !Request::is('login'))
-                          <a class="nav-link" href="{{ url('/logout')}}">Logout</a>
+
+                          <a class="nav-link navbar-right" href="{{ url('/logout')}}">Logout</a>
+
                       @endif
                       @if (Request::is('register'))
                           <a class="nav-link" href="{{ url('/login')}}">Login</a>
@@ -64,6 +71,7 @@
 
 
                     </li>
+
                 </ul>
             </div>
             <!-- /.navbar-collapse -->
