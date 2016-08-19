@@ -16,14 +16,7 @@ Route::get('', 'CustomerController@showCatalog')->name('showCatalog');
 
 /*Customer*/
 Route::group(['prefix' => 'customer'], function(){
-/*
-  Route::get('/catalog', function () {
-      return view('customer/catalog');
-  });
-*/
-  Route::get('/cart', function () {
-      return view('customer/cart');
-  });
+  Route::get('/cart', 'CustomerController@checkout')->name('checkoutCart');
   Route::get('/reviews', 'CustomerController@reviews')->name('showReviews');
   Route::get('/reviews', 'CustomerController@reviews')->name('showReviews');
   Route::get('/writereview/{product}', 'CustomerController@writeReview')->name('writeReviews');

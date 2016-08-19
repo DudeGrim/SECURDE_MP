@@ -82,5 +82,5 @@
 
 
 </body>
-
+@yield('endBodyScripts')
 </html>

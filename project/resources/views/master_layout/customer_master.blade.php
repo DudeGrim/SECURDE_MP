@@ -9,15 +9,15 @@
 @endsection
 @section('navbarContents')
   <li class="nav-item">
-      <a class="nav-link" href="#">Catalog
+      <a class="nav-link" href="{{route('showCatalog')}}">Catalog
       </a>
   </li>
   <li class="nav-item">
-      <a class="nav-link" href="#">Shopping Cart
+      <a class="nav-link" href="{{route('checkoutCart')}}">Checkout
       </a>
   </li>
   <li class="nav-item">
-      <a class="nav-link" href="#">Transaction
+      <a class="nav-link" href="#">Transactions
       </a>
   </li>
 @endsection

@@ -14,5 +14,7 @@ class CustomerController extends Controller
       $products = Product::all();
       return Response::view('customer/catalog', compact('products'));
     }
-
+    public function checkout(){
+      return Response::view('customer/cart');
+    }
 }
