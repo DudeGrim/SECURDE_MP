@@ -14,9 +14,5 @@ class CustomerController extends Controller
       $products = Product::all();
       return Response::view('customer/catalog', compact('products'));
     }
-    public function showCatalog(){
-      $products = Product::all();
-      return Response::view('customer/catalog', compact('products'));
-    }
 
 }
