@@ -13,16 +13,8 @@ use App\Customer;
 class TransactionController extends Controller
 {
   public function viewAll(){
-    /*
     $transactions = Transaction::with('productSold')->get();
-    return $transactions;
-    */
-
-    $transactions = Transaction::with('productSold')->get();
-    //return $transactions;
-
     return Response::view('accounting_manager/sales', compact('transactions'))
           ->header('X-Frame-Options','DENY');
-          
   }
 }

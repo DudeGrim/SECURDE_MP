@@ -17,7 +17,7 @@ Route::get('', 'CustomerController@showCatalog')->name('showCatalog');
 /*Customer*/
 Route::group(['prefix' => 'customer'], function(){
   Route::get('/cart', 'CustomerController@checkout')->name('checkoutCart');
-  Route::get('/transaction', 'CustomerController@transaction')->name('showTransactions');
+  Route::get('/transaction', 'CustomerController@viewTransaction')->name('showTransactions');
   Route::get('/writereview/{product}', 'CustomerController@writeReview')->name('writeReviews');
 });
 /*Where forms are submitted*/

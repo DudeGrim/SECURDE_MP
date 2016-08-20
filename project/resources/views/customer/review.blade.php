@@ -32,16 +32,15 @@
     <div class="panel panel-default">
       <div class="panel-heading">Product Information</div>
         <div class="panel-body">
-          <h4>Category: {{$product->category}}</h4>
-          <h4>Name: {{$product->name}}</h4>
-          <h4>Price: {{$product->price}}</h4>
-          <h4>Description: </h4>
-          <h5>{{$product->description}}</h5>
-          <h4>Stocks:</h4>
+          <li class="list-group-item"><strong class="text-warning">Category: </strong> {{$product->category}}</li>
+          <li class="list-group-item"><strong class="text-warning">Name:</strong> {{$product->name}}</li>
+          <li class="list-group-item"><strong class="text-warning">Price:</strong> {{$product->price}}</li>
+          <li class="list-group-item"><strong class="text-warning">Description:</strong> </li>
+          <li class="list-group-item">{{$product->description}}</li>
+          <li class="list-group-item"><strong class="text-warning">Stocks: </strong></li>
             @foreach($product->stocks as $stock)
-                <h4>{{$stock->size}}:{{$stock->stock}}</h4>
+                <li class="list-group-item col-md-4"><strong class="text-warning">Size</strong> {{$stock->size}}:{{$stock->stock}}</li>
             @endforeach
-
         </div>
       </div>
       </div>

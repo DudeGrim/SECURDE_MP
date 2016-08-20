@@ -8,6 +8,7 @@ use App\Http\Requests;
 
 use App\Product;
 use App\Review;
+use App\Transaction;
 
 class CustomerController extends Controller
 {
@@ -18,8 +19,14 @@ class CustomerController extends Controller
     public function checkout(){
       return Response::view('customer/cart');
     }
-    public function transaction(){
-      return Response::view('customer/transaction');
+    public function viewTransaction(){
+      $transactions = Transaction::with('productSold')
+                      ->where('idCustomer', 1)
+                      ->orderBy('created_at', 'asc')
+                      ->get();
+      //return $transactions;
+      return Response::view('customer/transaction', compact('transactions'))
+                ->header('X-Frame-Options','DENY');
     }
     public function writeReview(Product $product){
       $reviews = Review::where('idProduct',  $product->idProduct)->get();

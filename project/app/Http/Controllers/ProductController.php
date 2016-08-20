@@ -57,9 +57,9 @@ class ProductController extends Controller
             $review->idProduct = $request->_idProduct;
             $review->review = $request->_review;
             $review->rating = $request->_rating;
-
+            
             $review->save();
-            //return $review;
+
             return back();
     }
     /*Update Product Information*/
