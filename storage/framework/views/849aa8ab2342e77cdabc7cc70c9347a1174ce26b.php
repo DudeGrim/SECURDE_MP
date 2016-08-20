@@ -12,18 +12,18 @@
     <title>Russelio's Shoe Shop</title>
 
     <!-- Bootstrap Core CSS-->
-    <link href="{{asset('css/bootstrap.min.css')}}" rel="stylesheet">
-    <link href="{{asset('css/superhero_bootstrap.css')}}" rel="stylesheet">
-    <link href="{{asset('css/master.css')}}" rel="stylesheet">
+    <link href="<?php echo e(asset('css/bootstrap.min.css')); ?>" rel="stylesheet">
+    <link href="<?php echo e(asset('css/superhero_bootstrap.css')); ?>" rel="stylesheet">
+    <link href="<?php echo e(asset('css/master.css')); ?>" rel="stylesheet">
 
     <!-- jQuery -->
-    <script src="{{asset('js/jquery.js')}}"></script>
+    <script src="<?php echo e(asset('js/jquery.js')); ?>"></script>
     <!-- Bootstrap Core JavaScript  js/bootstrap.min.js-->
-    <script src="{{asset('js/bootstrap.min.js')}}"></script>
+    <script src="<?php echo e(asset('js/bootstrap.min.js')); ?>"></script>
 
     <!-- Custom CSS -->
-    @yield('customCSS')
-    @yield('customScripts')
+    <?php echo $__env->yieldContent('customCSS'); ?>
+    <?php echo $__env->yieldContent('customScripts'); ?>
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -48,33 +48,33 @@
             </div>
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
 
-                <ul class="nav navbar-nav pull-right">
-                    @if (!Request::is('register') && !Request::is('login'))
-                      @if(isEmpty(Auth::user()))
-                        <li class="nav-item logout">
-                          <a class="nav-link" href="{{ url('/logout')}}">Logout</a>
-                        </li>
-                      @endif
+                    <?php echo $__env->yieldContent('navbarContents'); ?>
+                    <?php if(!Request::is('register') && !Request::is('login')): ?>
+                    <li class="navbar-right">
+                      <a class="nav-link"><?php echo e(Auth::user()->username); ?></a>
+                    </li>
+                    <li class="nav-item logout navbar-right">
+                    <?php endif; ?>
 
-                    @else
-                      @if (Request::is('register'))
-                      <li class="nav-item register">
-                        <a class="nav-link" href="{{ url('/register')}}">Register</a>
-                      </li>
-                      @endif
-                      @if (Request::is('login'))
-                      <li class="nav-item login">
-                        <a class="nav-link" href="{{ url('/register')}}">Register</a>
-                      </li>
-                      @endif
-                    @endif
-                  </li>
+                      <?php if(!Request::is('register') && !Request::is('login')): ?>
+
+                          <a class="nav-link" href="<?php echo e(url('/logout')); ?>">Logout</a>
+
+                      <?php endif; ?>
+                      <?php if(Request::is('register')): ?>
+                          <a class="nav-link" href="<?php echo e(url('/login')); ?>">Login</a>
+                      <?php endif; ?>
+                      <?php if(Request::is('login')): ?>
+                          <a class="nav-link" href="<?php echo e(url('/register')); ?>">Register</a>
+                      <?php endif; ?>
+
+
+
+                    </li>
+
                 </ul>
-
-              <ul class="nav navbar-nav">
-                @yield('navbarContents')'
-              </ul>
             </div>
             <!-- /.navbar-collapse -->
         </div>
@@ -82,7 +82,7 @@
     </nav>
 
     <!-- Page Content -->
-    @yield('pagecontent')
+    <?php echo $__env->yieldContent('pagecontent'); ?>
     <!-- /.container -->
 
     <div class="container">
@@ -101,5 +101,5 @@
 
 
 </body>
-@yield('endBodyScripts')
+
 </html>

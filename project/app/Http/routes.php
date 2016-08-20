@@ -42,3 +42,7 @@ Route::get('/sales', 'TransactionController@viewAll')->name('viewAllTransactions
     return view('accounting_manager/sales');
 });
 */
+
+Route::auth();
+
+Route::get('/home', 'HomeController@index');
