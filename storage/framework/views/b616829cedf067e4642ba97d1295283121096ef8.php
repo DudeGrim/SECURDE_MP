@@ -12,29 +12,27 @@
     <title>Russelio's Shoe Shop</title>
 
     <!-- Bootstrap Core CSS-->
-    <link href="{{asset('css/bootstrap.min.css')}}" rel="stylesheet">
-    <link href="{{asset('css/superhero_bootstrap.css')}}" rel="stylesheet">
-    <link href="{{asset('css/master.css')}}" rel="stylesheet">
-
-    <!-- jQuery -->
-    <script src="{{asset('js/jquery.js')}}"></script>
-    <!-- Bootstrap Core JavaScript  js/bootstrap.min.js-->
-    <script src="{{asset('js/bootstrap.min.js')}}"></script>
-
+    <link href="<?php echo e(asset('css/superhero_bootstrap.css')); ?>" rel="stylesheet">
+    <link href="<?php echo e(asset('css/master.css')); ?>" rel="stylesheet">
+    <!--
+    <link href="  https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+  -->
     <!-- Custom CSS -->
-    @yield('customCSS')
-    @yield('customScripts')
+    <?php echo $__env->yieldContent('customCSS'); ?>
+    <?php echo $__env->yieldContent('customScripts'); ?>
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
         <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
+
 </head>
+
 <body>
 
     <!-- Navigation -->
-    <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
         <div class="container">
             <!-- Brand and toggle get grouped for better mobile display -->
             <div class="navbar-header">
@@ -48,39 +46,14 @@
             </div>
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
 
-                <ul class="nav navbar-nav pull-right">
-                    @if (!Request::is('register') && !Request::is('login'))
-                      @if(!empty(Auth::user()))
-                        <li class="nav-item logout">
-                          <a class="nav-link" href="{{ url('/logout')}}">Logout</a>
-                        </li>
-                      @else
-                      <li class="nav-item register">
-                        <a class="nav-link" href="{{ url('/register')}}">Register</a>
-                      </li>
-                      <li class="nav-item login">
-                        <a class="nav-link" href="{{ url('/login')}}">Login</a>
-                      </li>
-                      @endif
-                    @endif
-                    @if (Request::is('login'))
-                    <li class="nav-item register">
-                      <a class="nav-link" href="{{ url('/register')}}">Register</a>
-                    </li>
-                    @endif
-                    @if (Request::is('register'))
-                    <li class="nav-item login">
-                      <a class="nav-link" href="{{ url('/login')}}">Login</a>
-                    </li>
-                    @endif
+                    <?php echo $__env->yieldContent('navbarContents'); ?>
 
-                  </li>
+                    <li class="nav-item logout">
+                        <a class="nav-link" href="#">Logout</a>
+                    </li>
                 </ul>
-
-              <ul class="nav navbar-nav">
-                @yield('navbarContents')
-              </ul>
             </div>
             <!-- /.navbar-collapse -->
         </div>
@@ -88,7 +61,7 @@
     </nav>
 
     <!-- Page Content -->
-    @yield('pagecontent')
+    <?php echo $__env->yieldContent('pagecontent'); ?>
     <!-- /.container -->
 
     <div class="container">
@@ -105,7 +78,15 @@
     </div>
     <!-- /.container -->
 
+    <!-- jQuery
+    <script src="js/jquery.js"></script>
+    -->
+
+    <script src="https://code.jquery.com/jquery-3.1.0.js"   integrity="sha256-slogkvB1K3VOkzAI8QITxV3VzpOnkeNVsKvtkYLMjfk="   crossorigin="anonymous"></script>
+    <!-- Bootstrap Core JavaScript  js/bootstrap.min.js-->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
 
 </body>
-@yield('endBodyScripts')
+
 </html>

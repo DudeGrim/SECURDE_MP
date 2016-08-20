@@ -21,6 +21,7 @@ class CreateAccountTable extends Migration
             $table->string('middleInitial', 5)->nullable();
             $table->string('lastName', 45);
             $table->string('emailAddress', 80)->unique();
+            $table->string('remember_token', 80);
             $table->timestamps();
         });
     }
