@@ -1,5 +1,29 @@
 @extends('master_layout/customer_master')
 
+@section('customCSS')
+  <!--  <link href="{{asset('css/shop-homepage.css')}}" rel="stylesheet"> -->
+  <style>
+  body{margin:40px;}
+     .btn-circle {
+       width: 30px;
+       height: 30px;
+       text-align: center;
+       padding: 6px 0;
+       font-size: 12px;
+       line-height: 1.428571429;
+       border-radius: 15px;
+     }
+     .btn-circle.btn-lg {
+       width: 50px;
+       height: 50px;
+       padding: 13px 13px;
+       font-size: 18px;
+       line-height: 1.33;
+       border-radius: 25px;
+     }
+  </style>
+@endsection
+
 @section('pagecontent')
 <!-- Page Content -->
 <div class="container">
@@ -25,7 +49,9 @@
         <div class="panel panel-default">
           <div class="panel-heading">Write a Review </div>
             <div class="panel-body">
-            <form method="POST" action="{{ route('addNewProduct') }}">
+            <form method="POST" action="{{ route('reviewNew') }}">
+                <input type="hidden" name="_author" value="1">
+                <input type="hidden" name="_idProduct" value="{{$product->idProduct}}">
                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
                 <div class="form-group row">
                   <h4 for="example-text-input" class="col-xs-12 col-form-label">Review:</h4>
@@ -35,18 +61,21 @@
                   </div>
                 </div>
                 <div class="footer">
-                  <div class="form-group row">
                     <div class="col-xs-6">
-                        <span class="glyphicon glyphicon-star-empty"></span>
-                        <span class="glyphicon glyphicon-star-empty"></span>
-                        <span class="glyphicon glyphicon-star-empty"></span>
-                        <span class="glyphicon glyphicon-star-empty"></span>
-                        <span class="glyphicon glyphicon-star-empty"></span>
+                        <div class="form-group row">
+                        <h4 class="col-xs-2">Rating: </h4>
+                        <div class="col-xs-10" data-toggle="buttons">
+                          @for ($i = 1; $i <= 5; $i++)
+                          <label class="btn btn-default btn-circle btn-size active">
+                            <input type="radio" name="_rating" value="{{$i}}">{{$i}}
+                          </label>
+                          @endfor
+                        </div>
+                      </div>
                     </div>
-                    <div class="col-xs-6">
+                    <div class="col-xs-6 pull-right">
                       <button class="btn btn-block btn-success" type="submit">Post Review</button>
                     </div>
-                  </div>
                 </div>
             </form>
             </div>

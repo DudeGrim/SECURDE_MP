@@ -49,17 +49,17 @@ class ProductController extends Controller
       }
       return back();
     }
-    public function addNewReview(Request $request, Product $product){
+    public function addNewReview(Request $request){
 
             $review = new Review;
 
-            $review->idCustomer = $request->author;
-            $review->idProduct = $request->product;
-            $review->review = $request->review;
-            $review->rating = $request->rating;
+            $review->idCustomer = $request->_author;
+            $review->idProduct = $request->_idProduct;
+            $review->review = $request->_review;
+            $review->rating = $request->_rating;
 
             $review->save();
-
+            //return $review;
             return back();
     }
     /*Update Product Information*/

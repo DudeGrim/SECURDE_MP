@@ -21,7 +21,7 @@ Route::group(['prefix' => 'customer'], function(){
   Route::get('/writereview/{product}', 'CustomerController@writeReview')->name('writeReviews');
 });
 /*Where forms are submitted*/
-Route::post('/reviewNew/{product}','ProductController@addNewReview')->name('reviewNew');
+Route::post('/reviewNew','ProductController@addNewReview')->name('reviewNew');
 
 /*Product Manager*/
 Route::group(['prefix' => 'products'], function () {
