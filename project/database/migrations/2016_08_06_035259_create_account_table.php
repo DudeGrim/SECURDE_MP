@@ -13,7 +13,7 @@ class CreateAccountTable extends Migration
     public function up()
     {
         Schema::create('accounts', function (Blueprint $table) {
-            $table->increments('id');
+            $table->increments('idAccount');
             $table->integer('accountType')->unsigned();
             $table->string('username', 45)->unique();
             $table->string('password', 100);
@@ -21,6 +21,7 @@ class CreateAccountTable extends Migration
             $table->string('middleInitial', 5)->nullable();
             $table->string('lastName', 45);
             $table->string('emailAddress', 80)->unique();
+            $table->string('remember_token', 80);
             $table->timestamps();
         });
     }

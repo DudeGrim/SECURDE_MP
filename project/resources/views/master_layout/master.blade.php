@@ -51,29 +51,35 @@
 
                 <ul class="nav navbar-nav pull-right">
                     @if (!Request::is('register') && !Request::is('login'))
-                      @if(isEmpty(Auth::user()))
+                      @if(!empty(Auth::user()))
                         <li class="nav-item logout">
                           <a class="nav-link" href="{{ url('/logout')}}">Logout</a>
                         </li>
-                      @endif
-
-                    @else
-                      @if (Request::is('register'))
+                      @else
                       <li class="nav-item register">
                         <a class="nav-link" href="{{ url('/register')}}">Register</a>
                       </li>
-                      @endif
-                      @if (Request::is('login'))
                       <li class="nav-item login">
-                        <a class="nav-link" href="{{ url('/register')}}">Register</a>
+                        <a class="nav-link" href="{{ url('/login')}}">Login</a>
                       </li>
                       @endif
                     @endif
+                    @if (Request::is('login'))
+                    <li class="nav-item register">
+                      <a class="nav-link" href="{{ url('/register')}}">Register</a>
+                    </li>
+                    @endif
+                    @if (Request::is('register'))
+                    <li class="nav-item login">
+                      <a class="nav-link" href="{{ url('/login')}}">Login</a>
+                    </li>
+                    @endif
+
                   </li>
                 </ul>
 
               <ul class="nav navbar-nav">
-                @yield('navbarContents')'
+                @yield('navbarContents')
               </ul>
             </div>
             <!-- /.navbar-collapse -->

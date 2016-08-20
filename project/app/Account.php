@@ -8,6 +8,18 @@ class Account extends Authenticatable
 {
   protected $table = 'accounts';
   protected $primaryKey = 'idAccount';
+  protected $fillable = [
+      'username',
+      'emailAddress',
+      'firstName',
+      'middleInitial',
+      'lastName',
+      'password'
+  ];
+  protected $hidden = [
+      'password'
+
+  ];
 
   public function customer(){
      return $this->belongsTo(Customer::class, 'idAccount', 'idAccount');
