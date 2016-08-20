@@ -1,4 +1,4 @@
-@extends('master_layout.master')
+@extends('master_layout/master')
 
 @section('pagecontent')
 <div class="container">
@@ -9,6 +9,20 @@
                 <div class="panel-body">
                     <form class="form-horizontal" role="form" method="POST" action="{{ url('/register') }}">
                         {{ csrf_field() }}
+
+                        <div class="form-group{{ $errors->has('username') ? ' has-error' : '' }}">
+                            <label for="username" class="col-md-4 control-label">Username</label>
+
+                            <div class="col-md-6">
+                                <input id="username" type="text" class="form-control" name="username" value="{{ old('username') }}">
+
+                                @if ($errors->has('username'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('username') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
 
                         <div class="form-group{{ $errors->has('firstName') ? ' has-error' : '' }}">
                             <label for="firstName" class="col-md-4 control-label">First Name</label>
@@ -24,15 +38,43 @@
                             </div>
                         </div>
 
-                        <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
+                        <div class="form-group{{ $errors->has('middleInitial') ? ' has-error' : '' }}">
+                            <label for="middleInitial" class="col-md-4 control-label">Middle Initial</label>
+
+                            <div class="col-md-6">
+                                <input id="middleInitial" type="text" class="form-control" name="middleInitial" value="{{ old('middleInitial') }}">
+
+                                @if ($errors->has('middleInitial'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('middleInitial') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+
+                        <div class="form-group{{ $errors->has('lastName') ? ' has-error' : '' }}">
+                            <label for="lastName" class="col-md-4 control-label">Last Name</label>
+
+                            <div class="col-md-6">
+                                <input id="lastName" type="text" class="form-control" name="lastName" value="{{ old('lastName') }}">
+
+                                @if ($errors->has('lastName'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('lastName') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+
+                        <div class="form-group{{ $errors->has('emailAddress') ? ' has-error' : '' }}">
                             <label for="emailAddress" class="col-md-4 control-label">E-Mail Address</label>
 
                             <div class="col-md-6">
                                 <input id="emailAddress" type="email" class="form-control" name="emailAddress" value="{{ old('emailAddress') }}">
 
-                                @if ($errors->has('email'))
+                                @if ($errors->has('emailAddress'))
                                     <span class="help-block">
-                                        <strong>{{ $errors->first('email') }}</strong>
+                                        <strong>{{ $errors->first('emailAddress') }}</strong>
                                     </span>
                                 @endif
                             </div>
