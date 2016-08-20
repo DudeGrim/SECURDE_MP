@@ -11,10 +11,10 @@
 <!-- Page Content -->
 <div class="container">
    <h2>Checkout</h2>
-   <ul class="nav nav-pills nav-justified">
-      <li class="active"><a data-toggle="pill" href="#cart">Cart</a></li>
-      <li><a data-toggle="pill" href="#shipping">Shipping</a></li>
-      <li><a data-toggle="pill" href="#payment">Payment</a></li>
+   <ul id="mytabs" class="nav nav-pills nav-justified">
+      <li class="active"><a href="#cart">Cart</a></li>
+      <li disable><a href="#shipping">Shipping</a></li>
+      <li disable><a href="#payment">Payment</a></li>
    </ul>
    <div class="tab-content">
       <div id="cart" class="panel panel-default tab-pane fade in active">
@@ -57,7 +57,7 @@
             </table>
             <div class="form-group row">
                <div class="col-xs-4 pull-right">
-                  <input id="input-button" class="btn btn-lg btn-block btn-success"type="submit" value="Shipping Details"/>
+                  <input id="goToAddress" class="btn btn-lg btn-block btn-success" type="submit" value="Shipping Details"/>
                </div>
             </div>
          </div>
@@ -146,10 +146,10 @@
                   </div>
                   <div class="form-group row">
                     <div class="col-xs-4">
-                       <input id="input-button" class="btn btn-lg btn-block btn-info"type="submit" value="Cart"/>
+                       <input id="goToCart" class="btn btn-lg btn-block btn-info" type="submit" value="Cart"/>
                     </div>
                      <div class="col-xs-4 pull-right">
-                        <input id="input-button" class="btn btn-lg btn-block btn-success"type="submit" value="Payment"/>
+                        <input id="goToPayment" class="btn btn-lg btn-block btn-success" type="submit" value="Payment"/>
                      </div>
                   </div>
                </form>
@@ -189,7 +189,7 @@
           </div>
           <div class="form-group row">
             <div class="col-xs-4">
-               <input id="input-button" class="btn btn-lg btn-block btn-info"type="submit" value="Address"/>
+                <button id="goToAddress" class="btn btn-lg btn-block btn-info">Address</button>
             </div>
              <div class="col-xs-4 pull-right">
                 <input id="input-button" class="btn btn-lg btn-block btn-success"type="submit" value="Confirm"/>
@@ -206,6 +206,22 @@
 @section('endBodyScripts')
 <script src="{{asset('js/jquery.card.js')}}"></script>
 <script>
+/*for the tab navigation*/
+$(function(){
+    $('#goToCart').click(function(e){
+      e.preventDefault();
+        $('#mytabs a[href="#cart"]').tab('show');
+    });
+    $('#goToAddress').click(function(e){
+    	e.preventDefault();
+        $('#mytabs a[href="#shipping"]').tab('show');
+    });
+    $('#goToPayment').click(function(e){
+      e.preventDefault();
+        $('#mytabs a[href="#payment"]').tab('show');
+    });
+});
+/*for the credit card form*/
 $('.cardForm').card({
     container: '.card-wrapper',
     width: 280,

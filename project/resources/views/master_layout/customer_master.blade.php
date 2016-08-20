@@ -17,7 +17,7 @@
       </a>
   </li>
   <li class="nav-item">
-      <a class="nav-link" href="#">Transactions
+      <a class="nav-link" href="{{route('showTransactions')}}">Transactions
       </a>
   </li>
 @endsection

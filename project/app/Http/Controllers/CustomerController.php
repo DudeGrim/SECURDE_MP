@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Response;
 use App\Http\Requests;
 
 use App\Product;
+use App\Review;
 
 class CustomerController extends Controller
 {
@@ -17,4 +18,12 @@ class CustomerController extends Controller
     public function checkout(){
       return Response::view('customer/cart');
     }
+    public function transaction(){
+      return Response::view('customer/transaction');
+    }
+    public function writeReview(Product $product){
+      $reviews = Review::where('idProduct',  $product->idProduct)->get();
+      return view('customer/review', compact('product','reviews'));
+    }
+
 }

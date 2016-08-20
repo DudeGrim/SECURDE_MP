@@ -17,21 +17,12 @@ Route::get('', 'CustomerController@showCatalog')->name('showCatalog');
 /*Customer*/
 Route::group(['prefix' => 'customer'], function(){
   Route::get('/cart', 'CustomerController@checkout')->name('checkoutCart');
-  Route::get('/reviews', 'CustomerController@reviews')->name('showReviews');
-  Route::get('/reviews', 'CustomerController@reviews')->name('showReviews');
+  Route::get('/transaction', 'CustomerController@transaction')->name('showTransactions');
   Route::get('/writereview/{product}', 'CustomerController@writeReview')->name('writeReviews');
-  /*
-  Route::get('/reviews', function () {
-      return view('customer/review');
-  });
-  Route::get('/writereview', function () {
-      return view('customer/writereview');
-  });
-  Route::get('/transaction', function () {
-      return view('customer/transaction');
-  });
-  */
 });
+/*Where forms are submitted*/
+Route::post('/reviewNew/{product}','ProductController@addNewReview')->name('reviewNew');
+
 /*Product Manager*/
 Route::group(['prefix' => 'products'], function () {
     Route::get('', 'ProductController@viewAll')->name('viewAllProducts');
