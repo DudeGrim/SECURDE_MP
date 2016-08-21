@@ -15,6 +15,10 @@ use App\Product_Stock;
 use App\Review;
 class ProductController extends Controller
 {
+    public function __construct(){
+        $this->middleware('product');
+
+    }
     public function viewAll(){
       $products = Product::all();
       return Response::view('product_manager/view_all_products', compact('products'))
@@ -57,7 +61,7 @@ class ProductController extends Controller
             $review->idProduct = $request->_idProduct;
             $review->review = $request->_review;
             $review->rating = $request->_rating;
-            
+
             $review->save();
 
             return back();

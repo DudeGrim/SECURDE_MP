@@ -30,6 +30,9 @@
       $('.addToCart').click(function () {
               $('.parent').append("<div class='alert alert-success alert-dismissable'><button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;</button>Success! Item added successfully to cart.</div>")
       });
+      $('.loginFirst').click(function() {
+          location.href = "{{url('/login')}}";
+      });
 
       $(".filter-button").click(function(){
           var value = $(this).attr('data-filter');
@@ -89,7 +92,12 @@
                         </div>
                       </div>
                       <div class="panel-footer">
+                      @if(!empty(Auth::user()))
                         <button id="{{$product->idProduct}}_addToCart" class="addToCart btn btn-primary btn-md btn-block">
+                          <!-- <script>console.log("USER IS LOGGED IN");</script> -->
+                      @else
+                        <button id="{{$product->idProduct}}_loginFirst" class="loginFirst btn btn-primary btn-md btn-block">
+                      @endif
                           <span class="shoppingCartIcon glyphicon glyphicon-shopping-cart"></span>
                           Add to Cart
                         </button>

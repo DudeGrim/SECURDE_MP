@@ -1,16 +1,16 @@
 <?php
-
 namespace App\Http\Controllers\Auth;
-
 //use App\User;
+use Auth;
 use App\Account;
 use Validator;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\ThrottlesLogins;
 use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
-
+use Illuminate\Http\Request;
 class AuthController extends Controller
 {
+  //\Debugbar::disable();
     /*
     |--------------------------------------------------------------------------
     | Registration & Login Controller
@@ -29,6 +29,7 @@ class AuthController extends Controller
      *
      * @var string
      */
+
     protected $redirectTo = '/';
     protected $username = 'emailAddress';
     /**
@@ -47,10 +48,27 @@ class AuthController extends Controller
      * @param  array  $data
      * @return \Illuminate\Contracts\Validation\Validator
      */
+     public function register(Request $request)
+     {
+        $validator = $this->validator($request->all());
+        if ($validator->fails()) {
+            $this->throwValidationException(
+              $request, $validator
+            );
+        }
+
+        $user = $this->create($request->all());
+
+          return redirect(url('login'));
+
+
+
+    }
+
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'username' => 'required|max:255',
+            'username' => 'required|max:255|unique:accounts',
             'firstName' => 'required|max:255',
             'middleInitial' => 'required|max:1',
             'lastName' => 'required|max:255',
@@ -68,6 +86,7 @@ class AuthController extends Controller
      */
     protected function create(array $data)
     {
+     //if (array_key_exists('accountType' $data)){
         return Account::create([
             'username' => $data['username'],
             'firstName' => $data['firstName'],
@@ -75,6 +94,8 @@ class AuthController extends Controller
             'lastName' => $data['lastName'],
             'emailAddress' => $data['emailAddress'],
             'password' => bcrypt($data['password']),
+            'accountType' => '1',
         ]);
+  
     }
 }

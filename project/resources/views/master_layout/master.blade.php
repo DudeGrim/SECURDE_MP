@@ -52,6 +52,9 @@
                 <ul class="nav navbar-nav pull-right">
                     @if (!Request::is('register') && !Request::is('login'))
                       @if(!empty(Auth::user()))
+                        <li class="nav-item username">
+                          <a class="nav-link" href="{{ url('/')}}">{{Auth::user()->username}}</a>
+                        </li>
                         <li class="nav-item logout">
                           <a class="nav-link" href="{{ url('/logout')}}">Logout</a>
                         </li>

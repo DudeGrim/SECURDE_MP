@@ -12,6 +12,10 @@ use App\Transaction;
 
 class CustomerController extends Controller
 {
+    public function __construct(){
+
+      $this->middleware('customer');
+    }
     public function showCatalog(){
       $products = Product::all();
       return Response::view('customer/catalog', compact('products'));
