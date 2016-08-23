@@ -10,9 +10,11 @@
 | and give it the controller to call when that URI is requested.
 |
 */
+
 use App\User;
 
 Route::get('', 'CustomerController@showCatalog')->name('showCatalog');
+
 
 /*Customer*/
 Route::group(['prefix' => 'customer'], function(){
@@ -22,6 +24,12 @@ Route::group(['prefix' => 'customer'], function(){
 });
 /*Where forms are submitted*/
 Route::post('/reviewNew','CustomerController@addNewReview')->name('reviewNew');
+Route::post('/addToCart','CustomerController@addToCart')->name('addToCart');
+Route::post('/removeFromCart','CustomerController@removeFromCart')->name('removeFromCart');
+Route::post('/recalculateCart','CustomerController@recalculateCart')->name('recalculateCart');
+Route::post('/buyCart','CustomerController@buyCart')->name('buyCart');
+
+
 
 /*Product Manager*/
 Route::group(['prefix' => 'products'], function () {
@@ -29,11 +37,9 @@ Route::group(['prefix' => 'products'], function () {
     Route::get('/{product}', 'ProductController@showOne')->name('viewProduct');
     Route::patch('/{product}/update', 'ProductController@updateProduct')->name('updateProduct');
     Route::delete('/{product}/delete', 'ProductController@deleteProduct')->name('deleteProduct');
-
 });
 /*Where forms are submitted*/
 Route::post('/productNew','ProductController@addNewProduct')->name('addNewProduct');
-
 
 /*Accounting Manager*/
 Route::get('/sales', 'TransactionController@viewAll')->name('viewAllTransactions');

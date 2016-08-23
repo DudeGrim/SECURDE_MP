@@ -27,9 +27,10 @@
   <script>
     /*$(".alert").alert()*/
     $(document).ready(function () {
+      /*
       $('.addToCart').click(function () {
               $('.parent').append("<div class='alert alert-success alert-dismissable'><button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;</button>Success! Item added successfully to cart.</div>")
-      });
+      });*/
       $('.loginFirst').click(function() {
           location.href = "{{url('/login')}}";
       });
@@ -51,6 +52,9 @@
       });
 });
   </script>
+@endsection
+@section('cartCount')
+  <span class="badge cartCount"> {{ Cart::count() }}</span>
 @endsection
 @section('pagecontent')
 <!-- Page Content -->
@@ -78,6 +82,7 @@
                       </div>
                       <div class="panel-body">
                         <p>Category: {{$product->category}}</p>
+                    <form method="POST" action="{{ route('addToCart') }}">
                         <div class="form-group">
                           <h4>Select Size</h4></br>
                           <div data-toggle="buttons">
@@ -93,14 +98,20 @@
                       </div>
                       <div class="panel-footer">
                       @if(!empty(Auth::user()))
-                        <button id="{{$product->idProduct}}_addToCart" class="addToCart btn btn-primary btn-md btn-block">
+                         <input type="hidden" name="_token" value="{{csrf_token() }}">
+                         <input type="hidden" name="idProduct" value="{{$product->idProduct}}">
+
+                          <button id="{{$product->idProduct}}_addToCart" class="addToCart btn btn-primary btn-md btn-block" type="submit">
+                          <span class="shoppingCartIcon glyphicon glyphicon-shopping-cart"></span>
+                          Add to Cart
+                      </form>
                           <!-- <script>console.log("USER IS LOGGED IN");</script> -->
                       @else
                         <button id="{{$product->idProduct}}_loginFirst" class="loginFirst btn btn-primary btn-md btn-block">
-                      @endif
-                          <span class="shoppingCartIcon glyphicon glyphicon-shopping-cart"></span>
-                          Add to Cart
+                        <span class="shoppingCartIcon glyphicon glyphicon-log-in"></span>
+                        Login
                         </button>
+                      @endif
                       </div>
                   </div>
               </div>

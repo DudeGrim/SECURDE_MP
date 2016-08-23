@@ -11,59 +11,82 @@
 <!-- Page Content -->
 <div class="container">
    <h2>Checkout</h2>
-   <ul id="mytabs" class="nav nav-pills nav-justified">
-      <li class="active"><a href="#cart">Cart</a></li>
-      <li disable><a href="#shipping">Shipping</a></li>
-      <li disable><a href="#payment">Payment</a></li>
-   </ul>
-   <div class="tab-content">
-      <div id="cart" class="panel panel-default tab-pane fade in active">
+      <div id="cart" class="panel panel-default">
         <div class="panel-heading">Items in Cart </div>
          <div class="panel-body">
             <table class="table table-hover">
                <thead>
                   <tr>
-                     <th class="col-md-2">Item</th>
-                     <th class="col-md-1">Size</th>
-                     <th class="col-md-2">Quantity</th>
-                     <th class="col-md-2">Price</th>
-                     <th class="col-md-2">Subtotal</th>
                      <th class="col-md-2">Remove</th>
+                     <th class="col-md-3">Name</th>
+                     <th class="col-md-1">Size</th>
+                     <th class="col-md-1">Quantity</th>
+                     <th class="col-md-2">Price</th>
+                     <th class="col-md-2">Total</th>
                   </tr>
                </thead>
                <tbody>
+                 @foreach(Cart::content() as $item)
                   <tr>
-                     <td>Cool Boots for Kids</td>
-                     <td>7</td>
-                     <td><input type="number" min="1" step="1" value="1" id="quantity" required></td>
-                     <td>4000</td>
-                     <td>8000</td>
-                     <td>
-                        <form method="POST" action="#" onsubmit="return confirm('Are you sure, You want to delete this product?');" onsubmit="myFunction()">
-                           {{ method_field('DELETE') }}
-                           <input type="hidden" name="_token" value="{{csrf_token() }}">
-                           <input type="submit" class="btn btn-md btn-danger" value="Delete"></input>
-                        </form>
-                     </td>
+                    <td>
+                       <form method="POST" action="{{route('removeFromCart')}}" onsubmit="return confirm('Are you sure, You want to delete this product?');" onsubmit="myFunction()">
+                          <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                          <input type="hidden" name="rowID" value="{{ $item->rowId }}">
+                          <input type="submit" class="btn btn-block btn-md btn-danger" value="Remove"></input>
+                       </form>
+                    </td>
+                     <td>{{$item->name}}</td>
+                     <td>{{$item->options->size}}</td>
+                     <td>{{$item->qty}}</td>
+                     <!--
+                     <td><input type="number" min="1" step="1" name="qty_{{$item->rowId}}" value="{{$item->qty}}" id="quantity" required></td>
+                   -->
+                     <td>{{$item->price}}</td>
+                     <td>{{$item->price * $item->qty}}</td>
+                  </tr>
+                  @endforeach
+                  <tr>
+                     <td></td>
+                     <td></td>
+                     <td></td>
+                     <td></td>
+                     <td class="total text-warning"><strong>Subtotal: </strong></td>
+                     <td class="total">&#8369;<span id="totalAmount">{{Cart::subtotal()}}</span></td>
                   </tr>
                   <tr>
                      <td></td>
                      <td></td>
                      <td></td>
-                     <td class="total">Total: </td>
-                     <td class="total">&#8369;<span id="totalAmount">8000</span></td>
+                     <td></td>
+                     <td class="total text-warning"><strong>Tax: </strong> </td>
+                     <td class="total">&#8369;<span id="totalAmount">{{Cart::tax()}}</span></td>
+                  </tr>
+                  <tr>
+                     <td></td>
+                     <td></td>
+                     <td></td>
+                     <td></td>
+                     <td class="total text-warning"><strong>Total: </strong>: </td>
+                     <td class="total">&#8369;<span id="totalAmount">{{Cart::total()}}</span></td>
                   </tr>
                </tbody>
             </table>
+            <!--
             <div class="form-group row">
                <div class="col-xs-4 pull-right">
+                 <input class="btn btn-lg btn-block btn-info" type="submit" value="Recalculate"/>
+
+                 <hr/>
                   <input id="goToAddress" class="btn btn-lg btn-block btn-success" type="submit" value="Shipping Details"/>
+                </form>
                </div>
             </div>
+          -->
          </div>
       </div>
-      <div id="shipping" class="tab-pane fade">
-         <!--If user already has exisiting shipping address, preload it instead-->
+      <!--
+      <div id="shipping">
+         If user already has exisiting shipping address, preload it instead
          <div class="panel panel-default">
             <div class="panel-heading">Address</div>
             <div class="panel-body">
@@ -156,10 +179,13 @@
             </div>
          </div>
       </div>
-      <div id="payment" class="panel panel-default tab-pane fade">
+    -->
+    <form method="POST" action="{{route('buyCart')}}">
+
+      <div id="payment" class="panel panel-default">
         <div class="panel-heading">Credit Card Information</div>
         <div class="panel-body">
-        <form class="cardForm">
+        <div class="cardForm">
           <div class="card-wrapper"></div>
           <div class="form-group row">
              <h4  class="col-xs-2 col-form-label">First Name:</h4>
@@ -187,18 +213,23 @@
                 <input name="cvc" class="form-control" type="text" placeholder="CCV" maxlength="45" required>
              </div>
           </div>
+          </div>
           <div class="form-group row">
+            <!--
             <div class="col-xs-4">
                 <button id="goToAddress" class="btn btn-lg btn-block btn-info">Address</button>
             </div>
+          -->
              <div class="col-xs-4 pull-right">
-                <input id="input-button" class="btn btn-lg btn-block btn-success"type="submit" value="Confirm"/>
+
+                  <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                  <input id="input-button" class="btn btn-lg btn-block btn-success"type="submit" value="Confirm"/>
+              </form>
              </div>
           </div>
-          </form>
+
         </div>
       </div>
-   </div>
 </div>
 <!-- /.container -->
 @endsection
@@ -206,7 +237,9 @@
 @section('endBodyScripts')
 <script src="{{asset('js/jquery.card.js')}}"></script>
 <script>
+
 /*for the tab navigation*/
+/*
 $(function(){
     $('#goToCart').click(function(e){
       e.preventDefault();
@@ -220,7 +253,7 @@ $(function(){
       e.preventDefault();
         $('#mytabs a[href="#payment"]').tab('show');
     });
-});
+}); */
 /*for the credit card form*/
 $('.cardForm').card({
     container: '.card-wrapper',

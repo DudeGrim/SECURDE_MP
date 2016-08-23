@@ -13,7 +13,8 @@
       </a>
   </li>
   <li class="nav-item">
-      <a class="nav-link" href="{{route('checkoutCart')}}">Checkout
+      <a class="nav-link" href="{{route('checkoutCart')}}">Cart
+      @yield('cartCount')
       </a>
   </li>
   <li class="nav-item">
