@@ -16,6 +16,8 @@ class ProductMiddleware
      */
     public function handle($request, Closure $next)
     {
+      if(!Auth::check())
+        return redirect(url('/'));
       if(Auth::check() && Auth::user()->accountType != 2){
         if(Auth::user()->accountType == 1)
           return redirect(url('/'));
@@ -28,6 +30,7 @@ class ProductMiddleware
         // UNCOMMENT IF CHANGE PASSWORD PAGE IS UP
         // if(Auth::user()->created_at == Auth::user()->updated_at)
         //   return redirect(url('changePassword'));
+        // else
         return $next($request);
       }
     }

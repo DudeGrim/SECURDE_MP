@@ -49,7 +49,6 @@
           <div class="panel-heading">Write a Review </div>
             <div class="panel-body">
             <form method="POST" action="{{ route('reviewNew') }}">
-                <input type="hidden" name="_author" value="1">
                 <input type="hidden" name="_idProduct" value="{{$product->idProduct}}">
                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
                 <div class="form-group row">
@@ -66,7 +65,7 @@
                         <div class="col-xs-10" data-toggle="buttons">
                           @for ($i = 1; $i <= 5; $i++)
                           <label class="btn btn-default btn-circle btn-size active">
-                            <input type="radio" name="_rating" value="{{$i}}">{{$i}}
+                            <input type="radio" name="_rating" value="{{$i}}" required>{{$i}}
                           </label>
                           @endfor
                         </div>

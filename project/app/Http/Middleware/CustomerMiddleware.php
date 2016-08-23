@@ -15,6 +15,8 @@ class CustomerMiddleware
      */
     public function handle($request, Closure $next)
     {
+      // if(!Auth::check())
+      //   return redirect(url('/'));
       if(Auth::check() && Auth::user()->accountType != 1){
         if(Auth::user()->accountType == 3)
           return redirect(url('sales'));

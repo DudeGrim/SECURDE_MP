@@ -21,7 +21,7 @@ Route::group(['prefix' => 'customer'], function(){
   Route::get('/writereview/{product}', 'CustomerController@writeReview')->name('writeReviews');
 });
 /*Where forms are submitted*/
-Route::post('/reviewNew','ProductController@addNewReview')->name('reviewNew');
+Route::post('/reviewNew','CustomerController@addNewReview')->name('reviewNew');
 
 /*Product Manager*/
 Route::group(['prefix' => 'products'], function () {
@@ -38,10 +38,14 @@ Route::post('/productNew','ProductController@addNewProduct')->name('addNewProduc
 /*Accounting Manager*/
 Route::get('/sales', 'TransactionController@viewAll')->name('viewAllTransactions');
 
-/*Route::get('/sales', function () {
-    return view('accounting_manager/sales');
-});
+/*
 */
+/*Admin Manager*/
+Route::get('/admin', function () {
+    return view('admin_manager/admin_landing');
+});
+Route::post('/newAdmin', 'AdminController@createNewAdmin')->name('addNewAdmin');
+
 
 Route::auth();
 

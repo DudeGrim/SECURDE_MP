@@ -22,6 +22,10 @@ class CreateAccountTable extends Migration
             $table->string('lastName', 45);
             $table->string('emailAddress', 80)->unique();
             $table->string('remember_token', 80);
+            /* for the email confirmation upon registration */
+            $table->boolean('confirmed')->default(0);
+            $table->string('confirmation_code')->nullable();
+
             $table->timestamps();
         });
     }

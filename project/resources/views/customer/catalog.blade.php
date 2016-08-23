@@ -5,8 +5,8 @@
   <style>
   body{margin:40px;}
      .btn-circle {
-       width: 30px;
-       height: 30px;
+       width: 29px;
+       height: 29px;
        text-align: center;
        padding: 6px 0;
        font-size: 12px;
@@ -84,7 +84,7 @@
                         @foreach($product->stocks as $stock)
                           @if($stock->stock > 0)
                              <label class="btn btn-default btn-circle btn-size active">
-                               <input type="radio" name="size" value="{{$stock->size}}">{{$stock->size}}
+                               <input type="radio" name="size" value="{{$stock->size}}" required>{{$stock->size}}
                              </label>
                           @endif
                         @endforeach
@@ -101,12 +101,6 @@
                           <span class="shoppingCartIcon glyphicon glyphicon-shopping-cart"></span>
                           Add to Cart
                         </button>
-                        <!--
-                          <a href="#" class="addToCart btn btn-primary btn-md btn-block">
-                             <span class="shoppingCartIcon glyphicon glyphicon-shopping-cart"></span>
-                             Add to Cart
-                          </a>
-                        -->
                       </div>
                   </div>
               </div>

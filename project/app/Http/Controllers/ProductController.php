@@ -7,9 +7,7 @@ use Illuminate\Support\Facades\Response;
 use Illuminate\Database\Eloquent\SoftDeletingTrait;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use App\Http\Requests;
-
-//for step 1: use DB;
-
+use Auth;
 use App\Product;
 use App\Product_Stock;
 use App\Review;
@@ -53,19 +51,7 @@ class ProductController extends Controller
       }
       return back();
     }
-    public function addNewReview(Request $request){
-
-            $review = new Review;
-
-            $review->idCustomer = $request->_author;
-            $review->idProduct = $request->_idProduct;
-            $review->review = $request->_review;
-            $review->rating = $request->_rating;
-
-            $review->save();
-
-            return back();
-    }
+    
     /*Update Product Information*/
     public function updateProduct(Request $request, Product $product){
       $product->update(['category' => $request->_category,

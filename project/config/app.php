@@ -159,6 +159,10 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
 
+        /*
+        * Additional Service Providers
+        */
+        // \Gloudemans\Shoppingcart\ShoppingcartServiceProvider::class,
     ],
 
     /*
@@ -173,7 +177,7 @@ return [
     */
 
     'aliases' => [
-      'Debugbar' => 'Barryvdh\Debugbar\Facade', 
+      'Debugbar' => 'Barryvdh\Debugbar\Facade',
         'App' => Illuminate\Support\Facades\App::class,
         'Artisan' => Illuminate\Support\Facades\Artisan::class,
         'Auth' => Illuminate\Support\Facades\Auth::class,
@@ -204,6 +208,7 @@ return [
         'URL' => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
+        // 'Cart' => \Gloudemans\Shoppingcart\Facades\Cart::class,
 
     ],
 
