@@ -19,8 +19,7 @@ class ProductController extends Controller
     }
     public function viewAll(){
       $products = Product::all();
-      return Response::view('product_manager/view_all_products', compact('products'))
-            ->header('X-Frame-Options','DENY');
+      return Response::view('product_manager/view_all_products', compact('products'));
 
     }
     public function showOne(Product $product){
@@ -51,7 +50,7 @@ class ProductController extends Controller
       }
       return back();
     }
-    
+
     /*Update Product Information*/
     public function updateProduct(Request $request, Product $product){
       $product->update(['category' => $request->_category,

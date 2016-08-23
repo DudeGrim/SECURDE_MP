@@ -15,6 +15,7 @@ class Kernel extends HttpKernel
      */
     protected $middleware = [
         \Illuminate\Foundation\Http\Middleware\CheckForMaintenanceMode::class,
+        'SecureHeaders' => \App\Http\Middleware\SecureHeaders::class,
     ];
 
     /**
@@ -52,5 +53,6 @@ class Kernel extends HttpKernel
         'product' => \App\Http\Middleware\ProductMiddleware::class,
         'sale' => \App\Http\Middleware\SaleMiddleware::class,
         'customer' => \App\Http\Middleware\CustomerMiddleware::class,
+
     ];
 }

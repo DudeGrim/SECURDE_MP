@@ -60,10 +60,7 @@ class AuthController extends Controller
         $user = $this->create($request->all());
 
           return redirect(url('login'));
-
-
-
-    }
+      }
 
     protected function validator(array $data)
     {
@@ -96,6 +93,14 @@ class AuthController extends Controller
             'password' => bcrypt($data['password']),
             'accountType' => '1',
         ]);
-  
+
+    }
+    private function lockoutTime()
+    {
+      return property_exists($this, 'lockoutTime') ? $this->lockoutTime : 60;
+    }
+    protected function maxLoginAttempts()
+    {
+      return property_exists($this, 'maxLoginAttempts') ? $this->maxLoginAttempts : 3;
     }
 }

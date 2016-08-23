@@ -102,8 +102,7 @@ class CustomerController extends Controller
       }
       Cart::destroy();
 
-      $products = Product::all();
-      return Response::view('customer/catalog', compact('products'));
+      return redirect()->route('showCatalog');
     }
 
 }

@@ -223,7 +223,11 @@
              <div class="col-xs-4 pull-right">
 
                   <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                  <input id="input-button" class="btn btn-lg btn-block btn-success"type="submit" value="Confirm"/>
+                  @if(Cart::count() > 0 )
+                    <input id="input-button" class="btn btn-lg btn-block btn-success" type="submit" value="Confirm"/>
+                  @else
+                    <input id="input-button" class="btn btn-lg btn-block btn-success"type="submit" value="Confirm" disabled="true"/>
+                  @endif
               </form>
              </div>
           </div>

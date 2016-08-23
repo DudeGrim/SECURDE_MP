@@ -104,7 +104,7 @@
                           <button id="{{$product->idProduct}}_addToCart" class="addToCart btn btn-primary btn-md btn-block" type="submit">
                           <span class="shoppingCartIcon glyphicon glyphicon-shopping-cart"></span>
                           Add to Cart
-                      </form>
+
                           <!-- <script>console.log("USER IS LOGGED IN");</script> -->
                       @else
                         <button id="{{$product->idProduct}}_loginFirst" class="loginFirst btn btn-primary btn-md btn-block">
@@ -113,6 +113,7 @@
                         </button>
                       @endif
                       </div>
+                      </form>
                   </div>
               </div>
               @endforeach

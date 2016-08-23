@@ -7,6 +7,16 @@
             <div class="panel panel-default">
                 <div class="panel-heading">Login</div>
                 <div class="panel-body">
+                  @if (count($errors) > 0)
+                        <div class="alert alert-danger">
+                            <strong>Whoops!</strong> Either your username or password is incorrect.<br><br>
+                            <ul>
+                                @foreach ($errors->all() as $error)
+                                    <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    @endif
                     <form class="form-horizontal" role="form" method="POST" action="{{ url('/login') }}">
                         {{ csrf_field() }}
 
@@ -16,11 +26,11 @@
                             <div class="col-md-6">
                                 <input id="emailAddress" type="email" class="form-control" name="emailAddress" value="{{ old('emailAddress') }}">
 
-                                @if ($errors->has('emailAddress'))
+                                <!-- @if ($errors->has('emailAddress'))
                                     <span class="help-block">
                                         <strong>{{ $errors->first('emailAddress') }}</strong>
                                     </span>
-                                @endif
+                                @endif -->
                             </div>
                         </div>
 
@@ -30,11 +40,11 @@
                             <div class="col-md-6">
                                 <input id="password" type="password" class="form-control" name="password">
 
-                                @if ($errors->has('password'))
+                                <!-- @if ($errors->has('password'))
                                     <span class="help-block">
                                         <strong>{{ $errors->first('password') }}</strong>
                                     </span>
-                                @endif
+                                @endif -->
                             </div>
                         </div>
 
