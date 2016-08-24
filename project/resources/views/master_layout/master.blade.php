@@ -10,6 +10,7 @@
     <meta name="author" content="ABC">
 
     <title>Russelio's Shoe Shop</title>
+    <link rel="shortcut icon" href="{{ asset('ABC.ico') }}" >
 
     <!-- Bootstrap Core CSS-->
     <link href="{{asset('css/bootstrap.min.css')}}" rel="stylesheet">
