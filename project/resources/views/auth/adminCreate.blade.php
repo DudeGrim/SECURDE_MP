@@ -107,18 +107,25 @@
                                 @endif
                             </div>
                         </div>
-                        <div class="dropdown">
-                              <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Account Type
-                              <span class="caret"></span></button>
-                              <ul class="dropdown-menu">
-                                <li><a href="#">Product Manager</a></li>
-                                <li><a href="#">Accounting Manager</a></li>
-                              </ul>
+                        <div class="form-group{{ $errors->has('password_confirmation') ? ' has-error' : '' }}">
+                            <label for="password-confirm" class="col-md-4 control-label">Account Type: </label>
+
+                            <div class="col-md-6" data-toggle="buttons">
+                                <label class="btn btn-default btn-circle btn-size active">
+                                  <input name="_adminrole" id="adminrole" class="form-control" type="radio" value="4" required>Admin Manager
+                                </label>
+                                <label class="btn btn-default btn-circle btn-size active">
+                                  <input name="_adminrole" id="adminrole" class="form-control" type="radio" value="2" required>Product Manager
+                                </label>
+                                <label class="btn btn-default btn-circle btn-size active">
+                                  <input name="_adminrole" id="adminrole" class="form-control" type="radio" value="3" required>Accounting Manager
+                                </label>
+                            </div>
                         </div>
 
                         <div class="form-group">
                             <div class="col-md-6 col-md-offset-4">
-                                <button type="submit" class="btn btn-primary">
+                                <button type="submit" class="btn btn-block btn-success">
                                     <i class="fa fa-btn fa-user"></i> Create Account
                                 </button>
                             </div>

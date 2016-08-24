@@ -1,33 +1,6 @@
 [
   {
     "accountType": 1,
-    "username":"aniger429",
-    "password":"soawesome",
-    "emailAddress":"aniger429@gmail.com",
-    "firstName":"Regina Claire",
-    "middleInitial":"M",
-    "lastName":"Balajadia"
-  },
-  {
-    "accountType": 1,
-    "username":"DudeGrim",
-    "password":"bananaLover",
-    "emailAddress":"cardanomarcdaniel96@gmail.com",
-    "firstName":"Marc Daniel",
-    "middleInitial":"T",
-    "lastName":"Cardano"
-  },
-  {
-    "accountType": 1,
-    "username":"MrDayDreamer03",
-    "password":"vanillaLover",
-    "emailAddress":"russel_andrade@dlsu.edu.ph",
-    "firstName":"Russel John",
-    "middleInitial":"C",
-    "lastName":"Andrade"
-  },
-  {
-    "accountType": 1,
     "username":"rappogi1",
     "password":"avocadoLover",
     "emailAddress":"rafael_lozano@dlsu.edu.ph",
@@ -38,10 +11,64 @@
   {
     "accountType": 1,
     "username":"MartinLucasRR",
-    "password":"fruitLover",
+    "password":"badMartin",
     "emailAddress":"john_martin_lucas@dlsu.edu.ph",
     "firstName":"John Martin",
     "middleInitial":"G",
-    "lastName":"Lucas"  
+    "lastName":"Lucas"
+  },
+  {
+    "accountType": 1,
+    "username":"Barack_Forest",
+    "password":"pineappleLover",
+    "emailAddress":"markus_garcia@dlsu.edu.ph",
+    "firstName":"Markus Jeremi",
+    "middleInitial":"C",
+    "lastName":"Garcia"
+  },
+  {
+    "accountType": 1,
+    "username":"aztec_again",
+    "password":"scienceGuy",
+    "emailAddress":"aztec_centeno@dlsu.edu.ph",
+    "firstName":"Aztec",
+    "middleInitial":"X",
+    "lastName":"Centeno"
+  },
+  {
+    "accountType": 1,
+    "username":"MJRamos",
+    "password":"meatLover",
+    "emailAddress":"michael_joshua_ramos@dlsu.edu.ph",
+    "firstName":"Michael Joshua",
+    "middleInitial":"M",
+    "lastName":"Ramos"
+  },
+  {
+    "accountType": 2,
+    "username":"aniger429",
+    "password":"soawesome",
+    "emailAddress":"aniger429@gmail.com",
+    "firstName":"Regina Claire",
+    "middleInitial":"M",
+    "lastName":"Balajadia"
+  },
+  {
+    "accountType": 3,
+    "username":"MrDayDreamer03",
+    "password":"vanillaLover",
+    "emailAddress":"russel_andrade@dlsu.edu.ph",
+    "firstName":"Russel John",
+    "middleInitial":"C",
+    "lastName":"Andrade"
+  },
+  {
+    "accountType": 4,
+    "username":"DudeGrim",
+    "password":"bananaLover",
+    "emailAddress":"cardanomarcdaniel96@gmail.com",
+    "firstName":"Marc Daniel",
+    "middleInitial":"T",
+    "lastName":"Cardano"
   }
 ]

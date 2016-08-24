@@ -44,12 +44,8 @@ Route::post('/productNew','ProductController@addNewProduct')->name('addNewProduc
 /*Accounting Manager*/
 Route::get('/sales', 'TransactionController@viewAll')->name('viewAllTransactions');
 
-/*
-*/
 /*Admin Manager*/
-Route::get('/admin', function () {
-    return view('admin_manager/admin_landing');
-});
+Route::get('/admin', 'AdminController@adminLandingPage')->name('adminLandingPage');
 Route::post('/newAdmin', 'AdminController@createNewAdmin')->name('addNewAdmin');
 
 
